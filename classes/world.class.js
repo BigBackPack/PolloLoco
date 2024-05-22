@@ -4,10 +4,8 @@ class World {
     sky = new Sky();
     keyboard;
     camPosX = 0;
-    bgs = level01.bgs;
-    clouds = level01.clouds;
-    enemies = level01.enemies;
-    
+    level = level01;
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext("2d");
@@ -27,12 +25,10 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
         this.ctx.translate(this.camPosX, 0);
-    
-        // this.ctx.drawImage(this.sky.img, this.sky.x, this.sky.y, this.sky.width, this.sky.height);
 
-        this.addObjectsToMap(this.bgs);
-        this.addObjectsToMap(this.clouds);
-        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.level.bgs);
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.player);
 
         this.ctx.translate(-this.camPosX, 0);

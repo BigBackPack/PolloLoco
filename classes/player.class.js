@@ -1,6 +1,9 @@
 class Player extends MovableObject {
     world;
     speed;
+    camStartBoundery = 300;
+    camEndBoundery = 2300;
+    walkingSound = new Audio("audio/running.ogg")
 
     IMAGES_WALKING = [
         "img/2_player/2_walk/W-21.png",
@@ -23,6 +26,18 @@ class Player extends MovableObject {
         "img/2_player/1_idle/idle/I-9.png",
         "img/2_player/1_idle/idle/I-10.png"
     ];
+    
+    IMAGES_JUMP = [
+        "img/2_player/3_jump/J-31.png",
+        "img/2_player/3_jump/J-32.png",
+        "img/2_player/3_jump/J-33.png",
+        "img/2_player/3_jump/J-34.png",
+        "img/2_player/3_jump/J-35.png",
+        "img/2_player/3_jump/J-36.png",
+        "img/2_player/3_jump/J-37.png",
+        "img/2_player/3_jump/J-38.png",
+        "img/2_player/3_jump/J-39.png",
+    ];
 
     currentImage = 0;
 
@@ -30,12 +45,14 @@ class Player extends MovableObject {
     constructor() {
         super().loadImage("img/2_player/1_idle/idle/I-1.png");
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_JUMP);
 
         this.x = 20;
-        this.y = 330;
-        this.height = 100;
-        this.width = 60;
+        this.y = 100;
+        this.height = 150;
+        this.width = 80;
         this.speed = 2;
+        this.applyGravity();
 
         this.animate();
     }
@@ -44,32 +61,36 @@ class Player extends MovableObject {
     animate() {
         setInterval(() => {
             // movement
-            if (this.world.keyboard.RIGHT) {
-                this.x += this.speed;
-                this.otherDirection = false;
+            this.walkingSound.pause();
+
+            if (this.world.keyboard.RIGHT && this.x < 2650) {
+                this.moveRight();
+                this.walkingSound.play();
             } 
 
-            if (this.world.keyboard.LEFT) {
-                this.x -= this.speed;
-                this.otherDirection = true;
+            if (this.world.keyboard.LEFT && this.x > 0) {
+                this.moveLeft();
+                this.walkingSound.play();
             }
-            this.world.camPosX = -this.x;
+
+            if(this.x > this.camStartBoundery && this.x < this.camEndBoundery) {
+                this.world.camPosX = -this.x + this.camStartBoundery;
+            }
+
+            if(this.world.keyboard.JUMP && !this.aboveGround()) {
+                this.jump(); 
+            }
         }, 1000/60);     
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                // iterate thru array and % each index until the result is 0
-                let m = this.currentImage % this.IMAGES_WALKING.length;
-                let path = this.IMAGES_WALKING[m];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+
+            if (this.aboveGround()) {
+                this.playAnimation(this.IMAGES_JUMP);
+            } else {
+                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                    this.playAnimation(this.IMAGES_WALKING);
+                }
             }
-
         }, 1000/10);     
-    }
-
-
-    jump() {
-
     }
 }

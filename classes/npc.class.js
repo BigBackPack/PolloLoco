@@ -33,14 +33,12 @@ class Npc extends MovableObject {
 
     
     animate() {
-        this.moveLeft();
-
         setInterval(() => {
-            // iterate thru the aray and % each index until the result is 0
-            let m = this.currentImage % this.IMAGES_WALKING.length;
-            let path = this.IMAGES_WALKING[m];
-            this.img = this.imageCache[path];
-            this.currentImage++;
+            this.x -= this.speed;
+        }, 1000 / 60); //60 fps
+
+        setInterval(() => {            
+            this.playAnimation(this.IMAGES_WALKING);
         }, 1000/10);     
     }
 }
