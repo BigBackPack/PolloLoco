@@ -3,25 +3,10 @@ class World {
     player = new Player();
     sky = new Sky();
     keyboard;
-
-    bgs = [
-        new Bg("img/5_background/layers/3_third_layer/1.png", 0),
-        new Bg("img/5_background/layers/3_third_layer/2.png", 720),
-        new Bg("img/5_background/layers/2_second_layer/1.png", 0),
-        new Bg("img/5_background/layers/2_second_layer/2.png", 720),
-        new Bg("img/5_background/layers/1_first_layer/1.png", 0),
-        new Bg("img/5_background/layers/1_first_layer/2.png", 720),
-    ];
-
-    clouds = [
-        new Cloud()
-    ];
-
-    enemies = [
-        new Npc(),
-        new Npc(),
-        new Npc()
-    ];
+    camPosX = 0;
+    bgs = level01.bgs;
+    clouds = level01.clouds;
+    enemies = level01.enemies;
     
 
     constructor(canvas, keyboard) {
@@ -41,12 +26,16 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
-        this.ctx.drawImage(this.sky.img, this.sky.x, this.sky.y, this.sky.width, this.sky.height);
+        this.ctx.translate(this.camPosX, 0);
+    
+        // this.ctx.drawImage(this.sky.img, this.sky.x, this.sky.y, this.sky.width, this.sky.height);
 
-        this.addObjectsToMap(this.clouds);
         this.addObjectsToMap(this.bgs);
+        this.addObjectsToMap(this.clouds);
         this.addObjectsToMap(this.enemies);
         this.addToMap(this.player);
+
+        this.ctx.translate(-this.camPosX, 0);
 
         let self = this; //this" is not accepted within the next function
         requestAnimationFrame(function() {

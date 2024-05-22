@@ -53,6 +53,7 @@ class Player extends MovableObject {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
+            this.world.camPosX = -this.x;
         }, 1000/60);     
 
         setInterval(() => {
