@@ -4,6 +4,8 @@ class Player extends MovableObject {
     camStartBoundery = 300;
     camEndBoundery = 2300;
     walkingSound = new Audio("audio/running.ogg")
+    health = 100;
+
 
     IMAGES_WALKING = [
         "img/2_player/2_walk/W-21.png",
@@ -39,6 +41,22 @@ class Player extends MovableObject {
         "img/2_player/3_jump/J-39.png",
     ];
 
+    IMAGES_DEAD = [
+        "img/2_player/5_dead/D-51.png",
+        "img/2_player/5_dead/D-52.png",
+        "img/2_player/5_dead/D-53.png",
+        "img/2_player/5_dead/D-54.png",
+        "img/2_player/5_dead/D-55.png",
+        "img/2_player/5_dead/D-56.png",
+        "img/2_player/5_dead/D-57.png",
+    ];
+
+    IMAGES_HURT = [
+        "img/2_player/4_hurt/H-41.png",
+        "img/2_player/4_hurt/H-42.png",
+        "img/2_player/4_hurt/H-43.png",
+    ];
+
     currentImage = 0;
 
 
@@ -46,6 +64,8 @@ class Player extends MovableObject {
         super().loadImage("img/2_player/1_idle/idle/I-1.png");
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMP);
+        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_HURT);
 
         this.x = 20;
         this.y = 100;
@@ -83,8 +103,11 @@ class Player extends MovableObject {
         }, 1000/60);     
 
         setInterval(() => {
-
-            if (this.aboveGround()) {
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD);
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
+            } else if (this.aboveGround()) {
                 this.playAnimation(this.IMAGES_JUMP);
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {

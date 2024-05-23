@@ -19,6 +19,9 @@ window.addEventListener("keydown", (event) => {
     if (event.key == " ") {
         keyboard.JUMP = true;
     }
+    if (event.key == "w") {
+        keyboard.THROW = true;
+    } 
 });
 
 
@@ -32,4 +35,7 @@ window.addEventListener("keyup", (event) => {
     if (event.key == " ") {
         keyboard.JUMP = false;
     }
+    if (event.key == "w") {
+        keyboard.THROW = false;
+    } 
 });

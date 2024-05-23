@@ -1,14 +1,10 @@
-class MovableObject {
-    x;
-    y;
-    height;
-    width;
-    img;
+class MovableObject extends DrawableObject {
     speed;
     otherDirection = false;
-    imageCache = [];
     gravity = 0;
     fallSpeed = 1;
+    health;
+    lastHit = 0;
 
 
     applyGravity() {
@@ -22,26 +18,25 @@ class MovableObject {
 
 
     aboveGround() {
+        if(this instanceof ThrowableObject) {
+            return true;
+        }
         return this.y < 280;
     }
 
 
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
+
+// collision handeling
+    isColliding(mo) {
+        return this.x + this.width > mo.x 
+            && this.y + this.height > mo.y 
+            && this.x < mo.x 
+            && this.y < mo.y + mo.height;
     }
 
 
-    loadImages(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-    }
-
-
-    moveRight() {
+// basic controlls
+   moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
     }
@@ -64,5 +59,27 @@ class MovableObject {
         let path = images[m];
         this.img = this.imageCache[path];
         this.currentImage++;
+    }
+
+
+    hit() {
+        this.health -= 2;
+        if (this.health < 0) {
+            this.health = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+
+    isHurt() {
+        let timePassed = new Date().getTime() - this.lastHit;
+        timePassed = timePassed / 1000; //from msec to sec
+        return timePassed < 0.2;
+    }
+
+
+    isDead() {
+        return this.health == 0;
     }
 }
