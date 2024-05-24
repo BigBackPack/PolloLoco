@@ -66,9 +66,10 @@ class Player extends MovableObject {
         this.loadImages(this.IMAGES_JUMP);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_IDLE);
 
         this.x = 20;
-        this.y = 100;
+        this.y = 280;
         this.height = 150;
         this.width = 80;
         this.speed = 2;
@@ -109,11 +110,12 @@ class Player extends MovableObject {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.aboveGround()) {
                 this.playAnimation(this.IMAGES_JUMP);
-            } else {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.IMAGES_WALKING);
-                }
+            } else {
+                this.playAnimation(this.IMAGES_IDLE);
             }
+            
         }, 1000/10);     
     }
 }
