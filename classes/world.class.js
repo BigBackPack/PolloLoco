@@ -32,15 +32,37 @@ class World {
     }
 
 
+    // checkCollisions() {
+    //     this.level.enemies.forEach((enemy) => {
+    //         if (this.player.isColliding(enemy)) {
+    //             // this.level.enemies.splice(enemy, 1);
+    //             this.player.hit();
+    //             this.statusBar.setPercentage(this.player.health);
+    //         };
+    //     });
+    // }
+
+
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.player.isColliding(enemy)) {
-                console.log("col");
-                this.player.hit();
-                this.statusBar.setPercentage(this.player.health);
-            };
+                if (this.isPlayerAboveEnemy(this.player, enemy) 
+                    && (this.player.jumpPeak == true)) {
+                    enemy.dead(this.level.enemies, enemy);
+                } else {
+                    this.player.hit();
+                    this.statusBar.setPercentage(this.player.health);
+                }
+            }
         });
     }
+    
+    // Helper method to check if the player is above the enemy
+    isPlayerAboveEnemy(player, enemy) {
+        return player.y + player.height <= enemy.y + (enemy.height / 2);
+    }
+    
+   
 
 
     throwObjects() {
@@ -59,6 +81,7 @@ class World {
         this.addObjectsToMap(this.level.bgs);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
         this.addToMap(this.player);
 

@@ -33,7 +33,7 @@ class DrawableObject {
 
     
     drawCollider(ctx) {
-        if(this instanceof Player || this instanceof Npc) {
+        if(this instanceof Player || this instanceof Npc || this instanceof Boss) {
             ctx.beginPath();
             ctx.lineWidth = "5";
             ctx.strokeStyle = "tomato";

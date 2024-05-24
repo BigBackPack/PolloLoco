@@ -6,6 +6,8 @@ class Player extends MovableObject {
     walkingSound = new Audio("audio/running.ogg")
     health = 100;
 
+    jumpPeak = false;
+
 
     IMAGES_WALKING = [
         "img/2_player/2_walk/W-21.png",
@@ -76,6 +78,16 @@ class Player extends MovableObject {
         this.applyGravity();
 
         this.animate();
+        this.checkJumpPeak();
+    }
+
+
+    checkJumpPeak() {
+        setInterval(() => {
+            if(this.y < 180) {
+                this.jumpPeak = true;
+            }
+        }, 1000/60);
     }
 
 
@@ -114,6 +126,7 @@ class Player extends MovableObject {
                     this.playAnimation(this.IMAGES_WALKING);
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
+                this.jumpPeak = false;
             }
             
         }, 1000/10);     

@@ -1,10 +1,10 @@
 class Npc extends MovableObject {
   
-    randomStartPos = Math.random() * 500;
     x;
     y;
     height;
     width;
+    randomStartPos = Math.random() * 500;
     speed = Math.random() + 0.5;
     currentImage = 0;
     
@@ -40,5 +40,11 @@ class Npc extends MovableObject {
         setInterval(() => {            
             this.playAnimation(this.IMAGES_WALKING);
         }, 1000/10);     
+    }
+
+
+    dead(path, enemy) {
+        console.log(path.splice(enemy, 1));
+        path.splice(enemy, 1); 
     }
 }
