@@ -1,8 +1,10 @@
 class BottleCount extends DrawableObject {
 
+    bottleCount = 1;
+
+
     IMAGES = [
-        "img/6_ammo/1_salsa_bottle_on_ground.png",
-        
+        "img/6_ammo/1_salsa_bottle_on_ground.png",   
     ]
 
     constructor() {
@@ -12,9 +14,22 @@ class BottleCount extends DrawableObject {
         this.y = 100;
         this.width = 50;
         this.height = 50;
-        this.animate();
-        currentImage = 0;
-
-        this.img = this.IMAGES[0];
     }
+
+
+    increaseBottleCount() {
+        return this.bottleCount ++;
+    }
+
+
+    decreaseBottleCount() {
+        return this.bottleCount --;
+    }
+
+
+    displayBottelCountText = (ctx) => { 
+        ctx.font = "24px serif";
+        ctx.fillText("SALSA:" + this.bottleCount, 30, 40);
+    }
+    
 }

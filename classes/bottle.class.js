@@ -1,6 +1,7 @@
 class Bottle extends MovableObject {
 
     currentImage = 0;
+    pickedUp = false;
 
     
     IMAGES_IDLE = [

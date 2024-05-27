@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 
 
+
 function init() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
@@ -12,9 +13,11 @@ function init() {
 window.addEventListener("keydown", (event) => {
     if(event.key == "a"){
         keyboard.LEFT = true;
+        facingRight = false;
     } 
     if (event.key == "d") {
         keyboard.RIGHT = true;
+        facingRight = true;
     } 
     if (event.key == " ") {
         keyboard.JUMP = true;
@@ -37,5 +40,6 @@ window.addEventListener("keyup", (event) => {
     }
     if (event.key == "w") {
         keyboard.THROW = false;
+        keyboard.isShooting = false;
     } 
 });

@@ -1,10 +1,10 @@
 class MovableObject extends DrawableObject {
     speed;
-    otherDirection = false;
     gravity = 0;
     fallSpeed = 1;
     health;
     lastHit = 0;
+    otherDirection = false;
 
 
     applyGravity() {
@@ -36,6 +36,11 @@ class MovableObject extends DrawableObject {
 
 
 // basic controlls
+    getFacingDirection() {
+        return this.otherDirection;
+    }
+
+
    moveRight() {
         this.x += this.speed;
         this.otherDirection = false;

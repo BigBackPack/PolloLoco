@@ -131,4 +131,17 @@ class Player extends MovableObject {
             
         }, 1000/10);     
     }
+
+
+    pickUpBottle(bottle) {
+        this.world.bottleCount.increaseBottleCount();
+        bottle.height = 0;
+        bottle.width = 0;
+
+        setTimeout(function() {
+            bottle.height = 50;
+            bottle.width = 50;
+            bottle.pickedUp = false;
+        }, 5000); 
+      }
 }

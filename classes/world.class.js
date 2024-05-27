@@ -2,6 +2,8 @@ class World {
     ctx;
     player = new Player();
     statusBar = new StatusBar();
+    bottleCount = new BottleCount();
+
     sky = new Sky();
     throwableObjects = [];
     keyboard;
@@ -16,6 +18,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+
     }
 
 
@@ -32,17 +35,6 @@ class World {
     }
 
 
-    // checkCollisions() {
-    //     this.level.enemies.forEach((enemy) => {
-    //         if (this.player.isColliding(enemy)) {
-    //             // this.level.enemies.splice(enemy, 1);
-    //             this.player.hit();
-    //             this.statusBar.setPercentage(this.player.health);
-    //         };
-    //     });
-    // }
-
-
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.player.isColliding(enemy)) {
@@ -55,20 +47,39 @@ class World {
                 }
             }
         });
+
+        this.level.bottles.forEach((bottle) => {
+            if (this.player.isColliding(bottle) && bottle.pickedUp == false){
+                this.player.pickUpBottle(bottle);
+                bottle.pickedUp = true;
+            }
+        })
+
+        this.throwableObjects.forEach((bottle) => {
+            this.level.enemies.forEach((enemy) => {
+                if (bottle.isColliding(enemy)){
+                    console.log("enemy hit");
+                    enemy.dead(this.level.enemies, enemy);
+                    bottle.removeBottel(this.throwableObjects, bottle);
+                }
+            })
+        })
     }
     
+
     // Helper method to check if the player is above the enemy
     isPlayerAboveEnemy(player, enemy) {
         return player.y + player.height <= enemy.y + (enemy.height / 2);
     }
     
    
-
-
     throwObjects() {
-        if(this.keyboard.THROW) {
-            let bottle = new ThrowableObject(this.player.x + this.player.width, this.player.y + this.player.height/2);
+        if(this.keyboard.THROW && this.keyboard.isShooting == false
+        && this.bottleCount.bottleCount > 0) {
+            let bottle = new ThrowableObject(this.player.x + this.player.width/2, this.player.y + this.player.height/2, this.player);
             this.throwableObjects.push(bottle);
+            this.keyboard.isShooting = true;
+            this.bottleCount.decreaseBottleCount();
         }
     }
 
@@ -88,6 +99,7 @@ class World {
         this.ctx.translate(-this.camPosX, 0);
         // fixed objects space start
         this.addToMap(this.statusBar);
+        this.bottleCount.displayBottelCountText(this.ctx);
         // fixed objects space end
         this.ctx.translate(this.camPosX, 0);
 
@@ -114,11 +126,12 @@ class World {
 
         mo.draw(this.ctx);
         mo.drawCollider(this.ctx);
-
+        
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
     }
+
 
     flipImage(mo) {
         this.ctx.save();

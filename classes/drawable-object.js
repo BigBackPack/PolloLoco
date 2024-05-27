@@ -33,12 +33,21 @@ class DrawableObject {
 
     
     drawCollider(ctx) {
-        if(this instanceof Player || this instanceof Npc || this instanceof Boss) {
+        if(this instanceof Player || this instanceof Npc 
+        || this instanceof Boss || this instanceof Bottle
+        || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = "5";
             ctx.strokeStyle = "tomato";
             ctx.roundRect(this.x , this.y, this.width , this.height, 60);
             ctx.stroke()
         }
+    }
+
+
+    displayBottelCountText(ctx, bottleCount) {
+        let newBottleCount = this.increaseBottleCount();
+        ctx.font = "24px serif";
+        ctx.fillText("SALSA:"+bottleCount, 30, 40);
     }
 }

@@ -4,7 +4,8 @@ class Keyboard {
     JUMP = false;
     THROW = false;
 
-    
+    isShooting = false;
+
     constructor() {
 
     }
