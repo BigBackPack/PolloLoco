@@ -24,4 +24,9 @@ class Bottle extends MovableObject {
             this.playAnimation(this.IMAGES_IDLE);
         }, 1000/10);     
     }
+
+
+    defineStartingPos() {
+        this.x += 300;
+    }
 }

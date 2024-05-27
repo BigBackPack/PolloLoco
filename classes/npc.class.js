@@ -7,6 +7,12 @@ class Npc extends MovableObject {
     randomStartPos = Math.random() * 500;
     speed = Math.random() + 0.5;
     currentImage = 0;
+    goalRight = false;
+
+
+    walkMinPos;
+    walkMaxPos;
+    
     
     IMAGES_WALKING = [
         "img/3_npc/chicken_normal/1_walk/1_w.png",
@@ -28,18 +34,38 @@ class Npc extends MovableObject {
         this.height = 40;
         this.width = 40;
 
+        this.walkMinPos = 0;
+        this.walkMaxPos = 400;
+
         this.animate();
+    }
+
+
+    checkDirection() {
+        if (this.x < 0) {
+            this.goalRight = true;
+        } 
+        if (this.x > 700) {
+            this.goalRight = false;  
+        }
+
+        if (this.goalRight == true) {
+            this.x += 3;
+            this.otherDirection = true;
+        }
+        else if (this.goalRight == false) {
+            this.x -= 3;
+            this.otherDirection = false;
+        } 
+
+        this.playAnimation(this.IMAGES_WALKING);
     }
 
     
     animate() {
         setInterval(() => {
-            this.x -= this.speed;
-        }, 1000 / 60); //60 fps
-
-        setInterval(() => {            
-            this.playAnimation(this.IMAGES_WALKING);
-        }, 1000/10);     
+            this.checkDirection();
+        }, 1000 / 20); //60 fps    
     }
 
 

@@ -19,6 +19,11 @@ class World {
         this.setWorld();
         this.run();
 
+        // Set positions for bottles
+        let bottleX = 500; // Starting position (adjust as needed)
+        this.level.bottles.forEach((bottle, index) => {
+            bottle.x = bottleX + index * 500; // Space each bottle by 300px
+        });
     }
 
 
@@ -93,6 +98,8 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.bottles);
+
+
         this.addObjectsToMap(this.throwableObjects);
         this.addToMap(this.player);
 

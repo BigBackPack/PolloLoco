@@ -34,6 +34,8 @@ const level01 = new Level(
 
     [
         new Bottle(),
+        new Bottle(),
+        new Bottle(),
 
     ],
 );
