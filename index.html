@@ -2,6 +2,7 @@
 <html lang="en" translate="no">
 <head>
     <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/0ae0f22b20.js" crossorigin="anonymous"></script>
     <meta name="robots" content="noindex" />
     <link rel="shortcut icon" href="./img/favicon.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
     <script src="classes/npc.class.js"></script>
     <script src="classes/cloud.class.js"></script>
     <script src="classes/status-bar.js"></script>
+    <script src="classes/boss-hp-bar.class.js"></script>
     <script src="classes/bottle-count.class.js"></script>
     <script src="classes/coin-count.class.js"></script>
     <script src="classes/bottle.class.js"></script>
@@ -35,7 +37,14 @@
 <body onload="init()">
     <h1>POLLO LOCO</h1>
 
-    <canvas id="canvas" width="720" height="480"></canvas>
-    
+    <div id="canvas-container">
+        <canvas id="canvas" width="720" height="480"></canvas>
+        <button id="fullscreen-button" style="display: block!important;">
+            <i class="fa-solid fa-expand"></i>
+        </button>
+        <button id="minscreen-button">
+            <i class="fa-solid fa-compress"></i>
+        </button>
+    </div>
 </body>
 </html>

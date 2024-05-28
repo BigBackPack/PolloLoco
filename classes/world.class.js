@@ -2,6 +2,7 @@ class World {
     ctx;
     player = new Player();
     statusBar = new StatusBar();
+    bossHpBar = new BossHpBar();
     bottleCount = new BottleCount();
     coinCount = new CoinCount();
 
@@ -51,8 +52,9 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.player.isColliding(enemy)) {
                 if (this.isPlayerAboveEnemy(this.player, enemy) 
-                    && (this.player.jumpPeak == true)) {
-                    enemy.dead(this.level.enemies, enemy);
+                    && (this.player.jumpPeak == true)
+                    && (!(enemy instanceof Boss))) {
+                        enemy.dead(this.level.enemies, enemy);
                 } else {
                     this.player.hit();
                     this.statusBar.setPercentage(this.player.health);
@@ -69,8 +71,11 @@ class World {
 
         this.throwableObjects.forEach((bottle) => {
             this.level.enemies.forEach((enemy) => {
-                if (bottle.isColliding(enemy)){
-                    console.log("enemy hit");
+                if (bottle.isColliding(enemy) && enemy instanceof Boss){
+                    enemy.dead(this.level.enemies, enemy);
+                    this.bossHpBar.setPercentage(enemy.hp);
+                    bottle.removeBottel(this.throwableObjects, bottle);
+                } else if (bottle.isColliding(enemy)) {
                     enemy.dead(this.level.enemies, enemy);
                     bottle.removeBottel(this.throwableObjects, bottle);
                 }
@@ -121,6 +126,7 @@ class World {
         this.ctx.translate(-this.camPosX, 0);
         // fixed objects space start
         this.addToMap(this.statusBar);
+        this.addToMap(this.bossHpBar);
         this.bottleCount.displayBottelCountText(this.ctx);
         this.coinCount.displayCoinCountText(this.ctx);
         // fixed objects space end

@@ -11,7 +11,6 @@ class ThrowableObject extends MovableObject {
 
         if (player) {
             this.otherDirection = player.otherDirection;
-            console.log(this.otherDirection);
         }
 
         if(this.otherDirection) {

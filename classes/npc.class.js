@@ -8,7 +8,7 @@ class Npc extends MovableObject {
     speed = Math.random() + 0.5;
     currentImage = 0;
     goalRight = false;
-
+    isDead = false;
 
     walkMinPos;
     walkMaxPos;
@@ -70,7 +70,9 @@ class Npc extends MovableObject {
 
 
     dead(path, enemy) {
-        console.log(path.splice(enemy, 1));
-        path.splice(enemy, 1); 
+        this.x = -100;
+        this.y = -100;
+        this.width = 0;
+        this.height = 0; 
     }
 }

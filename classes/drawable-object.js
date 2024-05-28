@@ -48,6 +48,6 @@ class DrawableObject {
     displayBottelCountText(ctx, bottleCount) {
         let newBottleCount = this.increaseBottleCount();
         ctx.font = "24px serif";
-        ctx.fillText("SALSA:"+bottleCount, 30, 40);
+        ctx.fillText("SALSA:"+ bottleCount, 30, 40);
     }
 }

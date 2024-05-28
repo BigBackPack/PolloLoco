@@ -74,7 +74,7 @@ class Player extends MovableObject {
         this.y = 280;
         this.height = 150;
         this.width = 80;
-        this.speed = 2;
+        this.speed = 7;
         this.applyGravity();
 
         this.animate();
@@ -146,11 +146,10 @@ class Player extends MovableObject {
       }
 
 
-      pickUpCoin(coin) {
+    pickUpCoin(coin) {
         this.world.coinCount.increaseCoinCount();
         coin.height = 0;
         coin.width = 0; 
         coin.pickedUp = true;
-
-      }
+    }
 }

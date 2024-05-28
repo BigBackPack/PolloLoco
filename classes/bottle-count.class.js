@@ -1,6 +1,6 @@
 class BottleCount extends DrawableObject {
 
-    bottleCount = 1;
+    bottleCount = 10;
 
 
     IMAGES = [
