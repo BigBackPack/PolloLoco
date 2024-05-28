@@ -26,8 +26,8 @@ const level01 = new Level(
     ],
 
     [
-        new Npc(),
-        new Npc(),
+        // new Npc(),
+        // new Npc(),
 
         new Boss()
     ],
@@ -36,6 +36,11 @@ const level01 = new Level(
         new Bottle(),
         new Bottle(),
         new Bottle(),
+    ],
 
+    [
+        new Coin(),
+        new Coin(),
+        new Coin(),
     ],
 );

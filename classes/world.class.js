@@ -3,6 +3,7 @@ class World {
     player = new Player();
     statusBar = new StatusBar();
     bottleCount = new BottleCount();
+    coinCount = new CoinCount();
 
     sky = new Sky();
     throwableObjects = [];
@@ -20,10 +21,16 @@ class World {
         this.run();
 
         // Set positions for bottles
-        let bottleX = 500; // Starting position (adjust as needed)
+        let bottleX = 500;
         this.level.bottles.forEach((bottle, index) => {
-            bottle.x = bottleX + index * 500; // Space each bottle by 300px
+            bottle.x = bottleX + index * 500;
         });
+
+         // Set positions for bottles
+         let coinX = 300;
+         this.level.coins.forEach((coin, index) => {
+             coin.x = coinX + index * 200;
+         });
     }
 
 
@@ -69,6 +76,13 @@ class World {
                 }
             })
         })
+
+        this.level.coins.forEach((coin) => {
+            if (this.player.isColliding(coin) && coin.pickedUp == false){
+                this.player.pickUpCoin(coin);
+                coin.pickedUp = true;
+            }
+        })
     }
     
 
@@ -98,6 +112,7 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level.coins);
 
 
         this.addObjectsToMap(this.throwableObjects);
@@ -107,6 +122,7 @@ class World {
         // fixed objects space start
         this.addToMap(this.statusBar);
         this.bottleCount.displayBottelCountText(this.ctx);
+        this.coinCount.displayCoinCountText(this.ctx);
         // fixed objects space end
         this.ctx.translate(this.camPosX, 0);
 

@@ -35,7 +35,7 @@ class DrawableObject {
     drawCollider(ctx) {
         if(this instanceof Player || this instanceof Npc 
         || this instanceof Boss || this instanceof Bottle
-        || this instanceof ThrowableObject) {
+        || this instanceof ThrowableObject || this instanceof Coin) {
             ctx.beginPath();
             ctx.lineWidth = "5";
             ctx.strokeStyle = "tomato";

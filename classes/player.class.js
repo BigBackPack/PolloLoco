@@ -144,4 +144,13 @@ class Player extends MovableObject {
             bottle.pickedUp = false;
         }, 5000); 
       }
+
+
+      pickUpCoin(coin) {
+        this.world.coinCount.increaseCoinCount();
+        coin.height = 0;
+        coin.width = 0; 
+        coin.pickedUp = true;
+
+      }
 }
