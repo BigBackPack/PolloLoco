@@ -12,6 +12,9 @@ class World {
     camPosX = 0;
     level = level01;
 
+    throwSound = new Audio("audio/throw.ogg");
+
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext("2d");
@@ -100,6 +103,7 @@ class World {
     throwObjects() {
         if(this.keyboard.THROW && this.keyboard.isShooting == false
         && this.bottleCount.bottleCount > 0) {
+            this.throwSound.play();
             let bottle = new ThrowableObject(this.player.x + this.player.width/2, this.player.y + this.player.height/2, this.player);
             this.throwableObjects.push(bottle);
             this.keyboard.isShooting = true;

@@ -6,6 +6,8 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     otherDirection = false;
 
+    hurtSound = new Audio("audio/hurt.ogg");
+
 
     applyGravity() {
         setInterval(() => {
@@ -74,6 +76,7 @@ class MovableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
+        this.hurtSound.play();
     }
 
 

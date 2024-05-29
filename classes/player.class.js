@@ -3,7 +3,11 @@ class Player extends MovableObject {
     speed;
     camStartBoundery = 300;
     camEndBoundery = 2300;
-    walkingSound = new Audio("audio/running.ogg")
+    walkingSound = new Audio("audio/running.ogg");
+    jumpSound = new Audio("audio/jump.ogg");
+    pickupSound = new Audio("audio/pickup.ogg");
+    pickupCoinSound = new Audio("audio/coin.ogg");
+    bgMusic = new Audio("audio/latin_bg_music_2.ogg");
     health = 100;
 
     jumpPeak = false;
@@ -79,6 +83,16 @@ class Player extends MovableObject {
 
         this.animate();
         this.checkJumpPeak();
+
+        this.playBgMusic();
+    }
+
+
+    playBgMusic() {
+        this.bgMusic.addEventListener('canplaythrough', () => {
+            this.bgMusic.loop = true;
+            this.bgMusic.play();
+          });
     }
 
 
@@ -112,6 +126,7 @@ class Player extends MovableObject {
 
             if(this.world.keyboard.JUMP && !this.aboveGround()) {
                 this.jump(); 
+                this.jumpSound.play();
             }
         }, 1000/60);     
 
@@ -128,8 +143,7 @@ class Player extends MovableObject {
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
                 this.jumpPeak = false;
-            }
-            
+            }   
         }, 1000/10);     
     }
 
@@ -138,6 +152,7 @@ class Player extends MovableObject {
         this.world.bottleCount.increaseBottleCount();
         bottle.height = 0;
         bottle.width = 0;
+        this.pickupSound.play();
 
         setTimeout(function() {
             bottle.height = 50;
@@ -149,6 +164,7 @@ class Player extends MovableObject {
 
     pickUpCoin(coin) {
         this.world.coinCount.increaseCoinCount();
+        this.pickupCoinSound.play();
         coin.height = 0;
         coin.width = 0; 
         coin.pickedUp = true;
