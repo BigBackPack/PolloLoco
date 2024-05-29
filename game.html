@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/0ae0f22b20.js" crossorigin="anonymous"></script>
+    <meta name="robots" content="noindex" />
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="game-style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts.css">
+    
+    <script src="classes/drawable-object.js"></script>
+    <script src="classes/movable-object.class.js"></script>
+    <script src="classes/player.class.js"></script>
+    <script src="classes/npc.class.js"></script>
+    <script src="classes/cloud.class.js"></script>
+    <script src="classes/status-bar.js"></script>
+    <script src="classes/boss-hp-bar.class.js"></script>
+    <script src="classes/bottle-count.class.js"></script>
+    <script src="classes/coin-count.class.js"></script>
+    <script src="classes/bottle.class.js"></script>
+    <script src="classes/coin.class.js"></script>
+    <script src="classes/world.class.js"></script>
+    <script src="classes/bg.class.js"></script>
+    <script src="classes/sky.class.js"></script>
+    <script src="classes/keyboard.class.js"></script>
+    <script src="classes/level.class.js"></script>
+    <script src="classes/boss.class.js"></script>
+    <script src="levels/level_01.js"></script>
+    <script src="classes/throwable-object.js"></script>
+
+    <script src="js/game.js" defer></script>
+    <script src="js/full-screen-feature.js" defer></script>
+
+    <title>POLLO LOCO</title>
+</head>
+
+
+<body onload="init()">
+    <a href="index.html"><h2>-Los-</h2>
+    <h1>Pollos Locos</h1></a>
+
+    <div id="canvas-container">
+        <canvas id="canvas" width="720" height="480"></canvas>
+        <button id="fullscreen-button" style="display: block!important;">
+            <i class="fa-solid fa-expand"></i>
+        </button>
+        <button id="minscreen-button">
+            <i class="fa-solid fa-compress"></i>
+        </button>
+    </div>
+</body>
+</html>

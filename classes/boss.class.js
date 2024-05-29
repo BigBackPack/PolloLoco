@@ -70,6 +70,7 @@ class Boss extends MovableObject {
             this.y = -100;
             this.width = 0;
             this.height = 0; 
+            window.location = "win-screen.html";
         }
     }
 }
