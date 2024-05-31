@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="game-style.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="media.css">
     <link rel="stylesheet" href="fonts.css">
     
     <script src="classes/drawable-object.js"></script>
@@ -29,26 +30,70 @@
     <script src="classes/boss.class.js"></script>
     <script src="levels/level_01.js"></script>
     <script src="classes/throwable-object.js"></script>
+    <script src="classes/egg.class.js"></script>
 
     <script src="js/game.js" defer></script>
     <script src="js/full-screen-feature.js" defer></script>
+    <script src="js/sound-controls.js" defer></script>
 
     <title>POLLO LOCO</title>
 </head>
 
 
 <body onload="init()">
-    <a href="index.html"><h2>-Los-</h2>
-    <h1>Pollos Locos</h1></a>
+    <div id="title-container">
+        <a href="index.html"><h2>-Los-</h2>
+        <h1>Pollos Locos</h1></a>
+    </div>
+
+    <div id="fullscreen-overlay"><p class="warning-text">You need to hold ur device in landscape mode in order to play this game.</p></div>
 
     <div id="canvas-container">
+
         <canvas id="canvas" width="720" height="480"></canvas>
-        <button id="fullscreen-button" style="display: block!important;">
-            <i class="fa-solid fa-expand"></i>
-        </button>
-        <button id="minscreen-button">
-            <i class="fa-solid fa-compress"></i>
-        </button>
+
+        <!-- mobile controlls start -->
+        <div class="ui-container-bottom">
+            <button id="left-button">
+                <i class="fa-solid fa-angle-left"></i>
+            </button>
+    
+            <button id="right-button">
+                <i class="fa-solid fa-angle-right"></i>
+            </button>
+    
+            <!-- options -->
+            <div class="options-conatiner">
+                <button id="restart-button">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                </button>
+    
+                <button id="mute-button" onclick="muteGame()">
+                    <i class="fa-solid fa-volume-xmark"></i>
+                </button>
+
+                <button id="unmute-button" onclick="unmuteGame()">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+    
+                <button id="fullscreen-button">
+                    <i class="fa-solid fa-expand"></i>
+                </button>
+    
+                <button id="minscreen-button">
+                    <i class="fa-solid fa-compress"></i>
+                </button>
+            </div>
+            <!-- options end -->
+
+            <button id="jump-button">
+                <i class="fa-solid fa-angle-up"></i>
+            </button>
+    
+            <button id="bottle-button">
+                <i class="fa-solid fa-bottle-droplet"></i>
+            </button>
+        </div>
     </div>
 </body>
 </html>

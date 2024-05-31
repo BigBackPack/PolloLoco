@@ -7,7 +7,7 @@ class Player extends MovableObject {
     jumpSound = new Audio("audio/jump.ogg");
     pickupSound = new Audio("audio/pickup.ogg");
     pickupCoinSound = new Audio("audio/coin.ogg");
-    bgMusic = new Audio("audio/latin_bg_music_2.ogg");
+    // bgMusic = new Audio("audio/latin_bg_music_2.ogg");
     health = 100;
 
     jumpPeak = false;
@@ -84,15 +84,6 @@ class Player extends MovableObject {
         this.animate();
         this.checkJumpPeak();
 
-        this.playBgMusic();
-    }
-
-
-    playBgMusic() {
-        this.bgMusic.addEventListener('canplaythrough', () => {
-            this.bgMusic.loop = true;
-            this.bgMusic.play();
-          });
     }
 
 
@@ -112,12 +103,16 @@ class Player extends MovableObject {
 
             if (this.world.keyboard.RIGHT && this.x < 2650) {
                 this.moveRight();
-                this.walkingSound.play();
+                if (!soundMuted) {
+                    this.walkingSound.play();
+                }
             } 
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
-                this.walkingSound.play();
+                if (!soundMuted) {
+                    this.walkingSound.play();
+                }            
             }
 
             if(this.x > this.camStartBoundery && this.x < this.camEndBoundery) {
@@ -126,7 +121,9 @@ class Player extends MovableObject {
 
             if(this.world.keyboard.JUMP && !this.aboveGround()) {
                 this.jump(); 
-                this.jumpSound.play();
+                if (!soundMuted) {
+                    this.jumpSound.play();
+                }
             }
         }, 1000/60);     
 
@@ -152,7 +149,9 @@ class Player extends MovableObject {
         this.world.bottleCount.increaseBottleCount();
         bottle.height = 0;
         bottle.width = 0;
-        this.pickupSound.play();
+        if (!soundMuted) {
+            this.pickupSound.play();
+        }
 
         setTimeout(function() {
             bottle.height = 50;
@@ -164,7 +163,9 @@ class Player extends MovableObject {
 
     pickUpCoin(coin) {
         this.world.coinCount.increaseCoinCount();
-        this.pickupCoinSound.play();
+        if (!soundMuted) {
+            this.pickupCoinSound.play();
+        }
         coin.height = 0;
         coin.width = 0; 
         coin.pickedUp = true;

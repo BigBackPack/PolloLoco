@@ -1,0 +1,59 @@
+@media (max-width: 720px){
+    canvas{
+        width: 100%;
+    }
+
+    #left-button {
+        right: 0px; 
+        font-size: 2rem;
+    }
+    
+    #right-button {
+        right: 0px; 
+        font-size: 2rem;
+    }
+    
+    #jump-button {
+        right: 0px; 
+        font-size: 2rem;
+    }
+    
+    #bottle-button {
+        right: 0px; 
+        font-size: 2rem;
+    }
+    
+}
+
+@media (max-width: 500px){
+    #left-button {
+        right: 0px; 
+        font-size: 1rem;
+    }
+    
+    #right-button {
+        right: 0px; 
+        font-size: 1rem;
+    }
+    
+    #jump-button {
+        right: 0px; 
+        font-size: 1rem;
+    }
+    
+    #bottle-button {
+        right: 0px; 
+        font-size: 1rem;
+    }
+    
+    #restart-button {
+        right: 0px; 
+        font-size: 1rem;
+    }
+}
+
+@media (max-height: 480px){
+    canvas{
+        height: 100vh;
+    }
+}

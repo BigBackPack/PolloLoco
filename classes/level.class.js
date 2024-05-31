@@ -4,6 +4,7 @@ class Level {
     enemies;
     bottles;
     coins;
+    
 
     constructor(bgs, clouds, enemies, bottles, coins) {
         this.bgs = bgs;

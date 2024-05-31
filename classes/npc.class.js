@@ -10,6 +10,8 @@ class Npc extends MovableObject {
     goalRight = false;
     isDead = false;
 
+    chickenHurtSound = new Audio("audio/chicken.ogg");
+
     walkMinPos;
     walkMaxPos;
     
@@ -70,6 +72,9 @@ class Npc extends MovableObject {
 
 
     dead(path, enemy) {
+        if (!soundMuted) {
+            this.chickenHurtSound.play();
+        }
         this.x = -100;
         this.y = -100;
         this.width = 0;

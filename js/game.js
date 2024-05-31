@@ -2,6 +2,11 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+let buttonMoveRight = document.getElementById("right-button");
+let buttonMoveLeft = document.getElementById("left-button");
+let throwButton = document.getElementById("bottle-button");
+let jumpButton = document.getElementById("jump-button");
+let restartButton = document.getElementById("restart-button");
 
 
 function init() {
@@ -12,7 +17,7 @@ function init() {
     canvas.height = canvasHeight;
 }
 
-
+// key controlls
 window.addEventListener("keydown", (event) => {
     if(event.key == "a"){
         keyboard.LEFT = true;
@@ -45,4 +50,49 @@ window.addEventListener("keyup", (event) => {
         keyboard.THROW = false;
         keyboard.isShooting = false;
     } 
+});
+
+
+// button controlls
+buttonMoveRight.addEventListener("mousedown", () => {
+    keyboard.RIGHT = true;
+    facingRight = true;
+});
+
+buttonMoveRight.addEventListener("mouseup", () => {
+    keyboard.RIGHT = false;
+});
+
+
+buttonMoveLeft.addEventListener("mousedown", () => {
+    keyboard.LEFT = true;
+    facingLeft = false;
+});
+
+buttonMoveLeft.addEventListener("mouseup", () => {
+    keyboard.LEFT = false;
+});
+
+
+throwButton.addEventListener("mousedown", () => {
+    keyboard.THROW = true;
+});
+
+throwButton.addEventListener("mouseup", () => {
+    keyboard.THROW = false;
+    keyboard.isShooting = false;
+});
+
+
+jumpButton.addEventListener("mousedown", () => {
+    keyboard.JUMP = true;
+});
+
+jumpButton.addEventListener("mouseup", () => {
+    keyboard.JUMP = false;
+});
+
+
+restartButton.addEventListener("mousedown", () => {
+    window.location = "index.html";
 });

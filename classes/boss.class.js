@@ -1,5 +1,6 @@
 class Boss extends MovableObject {
 
+    world;
     hp = 100;
     currentImage = 0;
     goalRight = false;
@@ -20,7 +21,7 @@ class Boss extends MovableObject {
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 2200;
+        this.x = 400;
         this.y = 240
         this.width = 200;
         this.height = 200;
@@ -56,10 +57,10 @@ class Boss extends MovableObject {
     animate() {
         setInterval(() => {            
             this.checkDirection();
-        }, 1000/10);     
+        }, 1000/10);  
     }
 
-
+    
     dead(path, enemy) {
         this.hp -= 20;
 

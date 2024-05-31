@@ -1,7 +1,7 @@
 class MovableObject extends DrawableObject {
     speed;
     gravity = 0;
-    fallSpeed = 1;
+    fallSpeed = 0.8;
     health;
     lastHit = 0;
     otherDirection = false;
@@ -19,8 +19,18 @@ class MovableObject extends DrawableObject {
     }
 
 
+    applyEggGravity() {
+        setInterval(() => {
+            if (this.aboveGround() || this.gravity > 0 ) {
+                this.y -= this.gravity;
+                this.gravity -= this.fallSpeed/8;
+            }
+        }, 1000/30);
+    }
+
+
     aboveGround() {
-        if(this instanceof ThrowableObject) {
+        if(this instanceof ThrowableObject || this instanceof Egg) {
             return true;
         }
         return this.y < 280;
@@ -76,7 +86,9 @@ class MovableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
-        this.hurtSound.play();
+        if (!soundMuted) {
+            this.hurtSound.play();
+        }
     }
 
 

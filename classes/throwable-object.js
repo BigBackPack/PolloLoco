@@ -1,4 +1,5 @@
 class ThrowableObject extends MovableObject {
+    
     world;
 
 
@@ -28,12 +29,11 @@ class ThrowableObject extends MovableObject {
         setInterval(() => {
             this.x += throwDistance;
             world.checkCollisions();
-
         }, 1000/60);
     }
 
+
     removeBottel(path, bottle) {
-        console.log(path.splice(bottle, 1));
         path.splice(bottle, 1); 
     }
 }

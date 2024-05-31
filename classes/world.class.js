@@ -1,6 +1,7 @@
 class World {
     ctx;
     player = new Player();
+    boss = new Boss();
     statusBar = new StatusBar();
     bossHpBar = new BossHpBar();
     bottleCount = new BottleCount();
@@ -8,12 +9,14 @@ class World {
 
     sky = new Sky();
     throwableObjects = [];
+    eggs = [];
     keyboard;
     camPosX = 0;
     level = level01;
 
     throwSound = new Audio("audio/throw.ogg");
 
+    isAttacking = false;
 
 
     constructor(canvas, keyboard) {
@@ -35,6 +38,9 @@ class World {
          this.level.coins.forEach((coin, index) => {
              coin.x = coinX + index * 200;
          });
+
+        this.bossAttackManager();
+
     }
 
 
@@ -46,7 +52,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            this.throwObjects();        
+            this.throwObjects();  
         }, 1000/60);
     }
 
@@ -85,6 +91,18 @@ class World {
             })
         })
 
+        this.eggs.forEach((egg) => {
+            if (this.player.isColliding(egg)){
+                this.player.hit();
+                this.statusBar.setPercentage(this.player.health);
+                egg.removeEgg(this.eggs, egg);
+            }
+
+            if (egg.y > 400) {
+                egg.removeEgg(this.eggs, egg);
+            }
+        })
+
         this.level.coins.forEach((coin) => {
             if (this.player.isColliding(coin) && coin.pickedUp == false){
                 this.player.pickUpCoin(coin);
@@ -103,12 +121,40 @@ class World {
     throwObjects() {
         if(this.keyboard.THROW && this.keyboard.isShooting == false
         && this.bottleCount.bottleCount > 0) {
-            this.throwSound.play();
+            if (!soundMuted) {
+                this.throwSound.play();
+            }          
             let bottle = new ThrowableObject(this.player.x + this.player.width/2, this.player.y + this.player.height/2, this.player);
             this.throwableObjects.push(bottle);
             this.keyboard.isShooting = true;
             this.bottleCount.decreaseBottleCount();
         }
+    }
+
+
+    eggAttack() {
+        if (this.isAttacking == true) {
+            let egg = new Egg(this.boss.x + this.boss.width/2, this.boss.y + this.boss.height/2, this.boss);
+            this.eggs.push(egg);
+        }
+    }
+
+
+    bossAttackManager() {
+        if (!this.isAttacking) { // Check if not already attacking
+          this.isAttacking = true;
+          this.eggAttack();
+          setTimeout(() => {
+            this.isAttacking = false; // Reset after the attack
+            this.bossAttackManager(); // Schedule the next attack
+          }, 5000);
+        }
+    }
+
+
+    bossAttack() {
+        this.isAttacking = false;
+        this.bossAttackManager();
     }
 
 
@@ -125,6 +171,7 @@ class World {
 
 
         this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.eggs);
         this.addToMap(this.player);
 
         this.ctx.translate(-this.camPosX, 0);

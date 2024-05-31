@@ -23,6 +23,51 @@ if (viewportWidth / viewportHeight > aspectRatio) {
 }
 
 
+// check if : is mobuile device
+function isMobile() {
+  const userAgent = navigator.userAgent;
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+}
+
+function adjustElements() {
+  if (isMobile()) {
+    document.getElementById("title-container").style.display = "none";
+    document.getElementById("fullscreen-button").style.display = "none";
+  } else {
+    document.getElementById("title-container").style.display = "flex";
+    document.getElementById("fullscreen-button").style.display = "block";
+  }
+}
+
+// Call adjustElements on initial load
+adjustElements();
+
+// Add event listener for window resize
+window.addEventListener('resize', adjustElements);
+
+
+// check if : is landscape
+function checkOrientation() {
+  if (screen.orientation && screen.orientation.type) {
+    const orientation = screen.orientation.type;
+    if (orientation === 'landscape-primary' || orientation === 'landscape-secondary') {
+      console.log("Landscape mode");
+      document.getElementById("fullscreen-overlay").style.display = "none"
+    } else if (orientation === 'portrait-primary' || orientation === 'portrait-secondary') {
+      console.log("Portrait mode");
+      document.getElementById("fullscreen-overlay").style.display = "flex"
+    } else {
+      console.log("Unknown orientation");
+    }
+  }
+}
+
+// Call the function to check orientation on load or resize
+window.addEventListener('load', checkOrientation);
+window.addEventListener('resize', checkOrientation);
+
+
+// full screen feature
 document.addEventListener('fullscreenchange', () => {
     isFullscreen = document.fullscreenElement !== null;
     updateButtonVisibility();
@@ -52,7 +97,7 @@ function updateButtonVisibility() {
       canvas.style.width = `${canvasWidth}px`; 
       canvas.style.height = `${canvasHeight}px`;
     }
-  }
+};
   
 
 minscreenButton.addEventListener('click', () => {

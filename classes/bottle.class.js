@@ -8,6 +8,7 @@ class Bottle extends MovableObject {
         "img/6_ammo/1_salsa_bottle_on_ground.png",
     ];
 
+    
     constructor() {
         super().loadImage("img/6_ammo/1_salsa_bottle_on_ground.png");
         this.loadImages(this.IMAGES_IDLE);
