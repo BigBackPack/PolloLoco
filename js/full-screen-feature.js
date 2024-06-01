@@ -4,27 +4,34 @@ const viewportWidth = window.innerWidth;
 const viewportHeight = window.innerHeight;
 const canvasWidth = 720;
 const canvasHeight = 480;
-const canvasContainer = document.getElementById('canvas-container');
 const aspectRatio = canvasWidth / canvasHeight;
 
 let scaledWidth, scaledHeight;
 
-if (viewportWidth / viewportHeight > aspectRatio) {
-    // Screen is wider than aspect ratio, scale to height
-    scaledHeight = viewportHeight;
-    scaledWidth = scaledHeight * aspectRatio;
-} else {
-    // Screen is taller than aspect ratio, scale to width
-    scaledWidth = viewportWidth;
-    scaledHeight = scaledWidth / aspectRatio;
+
+function adjustAspectRatio() {
+  if (viewportWidth / viewportHeight > aspectRatio) {
+      scaledHeight = viewportHeight;
+      scaledWidth = scaledHeight * aspectRatio;
+  } else {
+      scaledWidth = viewportWidth;
+      scaledHeight = scaledWidth / aspectRatio;
+  }
 }
 
 
-// check if : is mobile device
+adjustAspectRatio();
+
+
 function isMobile() {
+  console.log(canvasWidth);
+  adjustAspectRatio();
+
   const userAgent = navigator.userAgent;
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+
 }
+
 
 function adjustElements() {
   if (isMobile()) {
@@ -34,6 +41,8 @@ function adjustElements() {
     buttonMoveRight.style.display = "block";
     jumpButton.style.display = "block";
     throwButton.style.display = "block";
+    canvasConatiner.style.justifyContent = "flex-end";
+    console.log("mobile view", canvasConatiner.style.justifyContent);
   } else {
     titleConatiner.style.display = "flex";
     fullscreenButton.style.display = "block";
@@ -41,13 +50,15 @@ function adjustElements() {
     buttonMoveRight.style.display = "none";
     jumpButton.style.display = "none";
     throwButton.style.display = "none";
+    canvasConatiner.style.justifyContent = "center";
+    console.log("desktop view", canvasConatiner.style.justifyContent);
   }
 }
 
-// Call adjustElements on initial load
+
 adjustElements();
 
-// Add event listener for window resize
+
 window.addEventListener('resize', adjustElements);
 
 
@@ -56,10 +67,10 @@ function checkOrientation() {
   if (screen.orientation && screen.orientation.type) {
     const orientation = screen.orientation.type;
     if (orientation === 'landscape-primary' || orientation === 'landscape-secondary') {
-      console.log("Landscape mode");
+      // console.log("Landscape mode");
       document.getElementById("fullscreen-overlay").style.display = "none"
     } else if (orientation === 'portrait-primary' || orientation === 'portrait-secondary') {
-      console.log("Portrait mode");
+      // console.log("Portrait mode");
       document.getElementById("fullscreen-overlay").style.display = "flex"
     } else {
       console.log("Unknown orientation");
@@ -79,17 +90,6 @@ document.addEventListener('fullscreenchange', () => {
 });
 
 
-fullscreenButton.addEventListener('click', () => {
-    if (!isFullscreen) {
-      canvasContainer.requestFullscreen();
-    } else {
-      document.exitFullscreen();
-    }
-    isFullscreen = !isFullscreen;
-    updateButtonVisibility();
-});
-
-
 function updateButtonVisibility() {
     if (isFullscreen) {
       fullscreenButton.style.display = 'none';
@@ -105,8 +105,20 @@ function updateButtonVisibility() {
 };
   
 
+fullscreenButton.addEventListener('click', () => {
+  if (!isFullscreen) {
+    canvasConatiner.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+  isFullscreen = !isFullscreen;
+  updateButtonVisibility();
+});
+
+
 minscreenButton.addEventListener('click', () => {
-    if (document.exitFullscreen) {
+    if (isFullscreen) {
       document.exitFullscreen();
+      updateButtonVisibility();
     }
 });

@@ -10,7 +10,10 @@ const restartButton = document.getElementById("restart-button");
 const fullscreenButton = document.getElementById('fullscreen-button');
 const minscreenButton = document.getElementById('minscreen-button');
 const titleConatiner = document.getElementById('title-container');
+const canvasConatiner = document.getElementById('canvas-container');
 
+const skyLayer = level01.bgs[4];
+const mountainLayer = level01.bgs[8];
 
 function init() {
     canvas = document.getElementById("canvas");
@@ -24,11 +27,15 @@ function init() {
 window.addEventListener("keydown", (event) => {
     if(event.key == "a"){
         keyboard.LEFT = true;
-        facingRight = false;
+        facingRdight = false;
+        skyLayer.moveBgRight = true;
+        mountainLayer.moveBgRight = true;
     } 
     if (event.key == "d") {
         keyboard.RIGHT = true;
         facingRight = true;
+        skyLayer.moveBgLeft = true;
+        mountainLayer.moveBgLeft = true;
     } 
     if (event.key == " ") {
         keyboard.JUMP = true;
@@ -42,9 +49,13 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("keyup", (event) => {
     if(event.key == "a"){
         keyboard.LEFT = false;
+        skyLayer.moveBgRight = false;
+        mountainLayer.moveBgRight = false;
     }
     if (event.key == "d") {
         keyboard.RIGHT = false;
+        skyLayer.moveBgLeft = false;
+        mountainLayer.moveBgLeft = false;
     }
     if (event.key == " ") {
         keyboard.JUMP = false;

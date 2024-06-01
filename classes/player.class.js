@@ -7,7 +7,6 @@ class Player extends MovableObject {
     jumpSound = new Audio("audio/jump.ogg");
     pickupSound = new Audio("audio/pickup.ogg");
     pickupCoinSound = new Audio("audio/coin.ogg");
-    // bgMusic = new Audio("audio/latin_bg_music_2.ogg");
     health = 100;
 
     jumpPeak = false;
@@ -83,7 +82,6 @@ class Player extends MovableObject {
 
         this.animate();
         this.checkJumpPeak();
-
     }
 
 
