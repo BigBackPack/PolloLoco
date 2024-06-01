@@ -2,11 +2,14 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-let buttonMoveRight = document.getElementById("right-button");
-let buttonMoveLeft = document.getElementById("left-button");
-let throwButton = document.getElementById("bottle-button");
-let jumpButton = document.getElementById("jump-button");
-let restartButton = document.getElementById("restart-button");
+const buttonMoveRight = document.getElementById("right-button");
+const buttonMoveLeft = document.getElementById("left-button");
+const throwButton = document.getElementById("bottle-button");
+const jumpButton = document.getElementById("jump-button");
+const restartButton = document.getElementById("restart-button");
+const fullscreenButton = document.getElementById('fullscreen-button');
+const minscreenButton = document.getElementById('minscreen-button');
+const titleConatiner = document.getElementById('title-container');
 
 
 function init() {
@@ -54,45 +57,50 @@ window.addEventListener("keyup", (event) => {
 
 
 // button controlls
-buttonMoveRight.addEventListener("mousedown", () => {
+buttonMoveRight.addEventListener("touchstart", () => {
     keyboard.RIGHT = true;
     facingRight = true;
 });
 
-buttonMoveRight.addEventListener("mouseup", () => {
+buttonMoveRight.addEventListener("touchend", () => {
     keyboard.RIGHT = false;
 });
 
 
-buttonMoveLeft.addEventListener("mousedown", () => {
+buttonMoveLeft.addEventListener("touchstart", () => {
     keyboard.LEFT = true;
     facingLeft = false;
 });
 
-buttonMoveLeft.addEventListener("mouseup", () => {
+buttonMoveLeft.addEventListener("touchend", () => {
     keyboard.LEFT = false;
 });
 
 
-throwButton.addEventListener("mousedown", () => {
+throwButton.addEventListener("touchstart", () => {
     keyboard.THROW = true;
 });
 
-throwButton.addEventListener("mouseup", () => {
+throwButton.addEventListener("touchend", () => {
     keyboard.THROW = false;
     keyboard.isShooting = false;
 });
 
 
-jumpButton.addEventListener("mousedown", () => {
+jumpButton.addEventListener("touchstart", () => {
     keyboard.JUMP = true;
 });
 
-jumpButton.addEventListener("mouseup", () => {
+jumpButton.addEventListener("touchend", () => {
     keyboard.JUMP = false;
 });
 
 
-restartButton.addEventListener("mousedown", () => {
+restartButton.addEventListener("touchstart", () => {
+    window.location = "index.html";
+});
+
+
+restartButton.addEventListener("click", () => {
     window.location = "index.html";
 });

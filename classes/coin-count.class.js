@@ -28,7 +28,8 @@ class CoinCount extends DrawableObject {
 
 
     displayCoinCountText = (ctx) => { 
-        ctx.font = "24px serif";
-        ctx.fillText("COPINS:" + this.coinCount, 150, 40);
+        ctx.font = "24px Pixelify Sans";
+        ctx.fillStyle = "white";
+        ctx.fillText("COINS:" + this.coinCount, 150, 40);
     }
 }

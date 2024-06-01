@@ -4,9 +4,6 @@ const viewportWidth = window.innerWidth;
 const viewportHeight = window.innerHeight;
 const canvasWidth = 720;
 const canvasHeight = 480;
-
-const fullscreenButton = document.getElementById('fullscreen-button');
-const minscreenButton = document.getElementById('minscreen-button');
 const canvasContainer = document.getElementById('canvas-container');
 const aspectRatio = canvasWidth / canvasHeight;
 
@@ -23,7 +20,7 @@ if (viewportWidth / viewportHeight > aspectRatio) {
 }
 
 
-// check if : is mobuile device
+// check if : is mobile device
 function isMobile() {
   const userAgent = navigator.userAgent;
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
@@ -31,11 +28,19 @@ function isMobile() {
 
 function adjustElements() {
   if (isMobile()) {
-    document.getElementById("title-container").style.display = "none";
-    document.getElementById("fullscreen-button").style.display = "none";
+    titleConatiner.style.display = "none";
+    fullscreenButton.style.display = "none";
+    buttonMoveLeft.style.display = "block";
+    buttonMoveRight.style.display = "block";
+    jumpButton.style.display = "block";
+    throwButton.style.display = "block";
   } else {
-    document.getElementById("title-container").style.display = "flex";
-    document.getElementById("fullscreen-button").style.display = "block";
+    titleConatiner.style.display = "flex";
+    fullscreenButton.style.display = "block";
+    buttonMoveLeft.style.display = "none";
+    buttonMoveRight.style.display = "none";
+    jumpButton.style.display = "none";
+    throwButton.style.display = "none";
   }
 }
 

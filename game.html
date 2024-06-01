@@ -2,6 +2,9 @@
 <html lang="en" translate="no">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/0ae0f22b20.js" crossorigin="anonymous"></script>
     <meta name="robots" content="noindex" />
     <link rel="shortcut icon" href="./img/favicon.png" type="image/png">
@@ -50,7 +53,7 @@
 
     <div id="canvas-container">
 
-        <canvas id="canvas" width="720" height="480"></canvas>
+        <canvas id="canvas"></canvas>
 
         <!-- mobile controlls start -->
         <div class="ui-container-bottom">
@@ -69,11 +72,11 @@
                 </button>
     
                 <button id="mute-button" onclick="muteGame()">
-                    <i class="fa-solid fa-volume-xmark"></i>
+                    <i class="fa-solid fa-volume-high"></i>
                 </button>
 
                 <button id="unmute-button" onclick="unmuteGame()">
-                    <i class="fa-solid fa-volume-high"></i>
+                    <i class="fa-solid fa-volume-xmark"></i>
                 </button>
     
                 <button id="fullscreen-button">

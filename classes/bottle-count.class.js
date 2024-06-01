@@ -28,7 +28,8 @@ class BottleCount extends DrawableObject {
 
 
     displayBottelCountText = (ctx) => { 
-        ctx.font = "24px serif";
+        ctx.font = "24px Pixelify Sans";
+        ctx.fillStyle = "white";
         ctx.fillText("SALSA:" + this.bottleCount, 30, 40);
     }
     

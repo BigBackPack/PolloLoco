@@ -8,14 +8,13 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    margin: 0px;
 }
 
 canvas{
     background-color: #2e2e2e;
     display: block;
 }
-
 
 #canvas-container {
     position: relative;
@@ -82,17 +81,11 @@ canvas{
 
 
 /* #region mobile controlls -------------------------------------*/
-.ui-container-top {
-    width: 100%;
-    display: flex;
-    justify-content: right;
-    align-items: top;
-}
-
 .ui-container-bottom {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    height: 0;
 }
 
 #left-button {
@@ -174,7 +167,7 @@ canvas{
     position: relative;
     bottom: 60px; 
     right: 0px; 
-    z-index: 100; 
+    z-index: 90; 
     display: block;
     font-size: 1rem;
 }
@@ -188,7 +181,7 @@ canvas{
     position: relative;
     bottom: 60px; 
     right: 0px; 
-    z-index: 100; 
+    z-index: 99; 
     display: none;
     font-size: 1rem;
 }
