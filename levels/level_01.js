@@ -1,25 +1,9 @@
 const level01 = new Level(
     [
-        // sky
-        new Bg("img/5_background/layers/air.png", 0),
-        new Bg("img/5_background/layers/air.png", 720),
-        new Bg("img/5_background/layers/air.png", 1440),
-        new Bg("img/5_background/layers/air.png", 2160),
-
-        new Bg("img/5_background/layers/3_third_layer/1.png", 0),
-        new Bg("img/5_background/layers/3_third_layer/2.png", 720),
-        new Bg("img/5_background/layers/3_third_layer/1.png", 1440),
-        new Bg("img/5_background/layers/3_third_layer/2.png", 2160),
-
-        new Bg("img/5_background/layers/2_second_layer/1.png", 0),
-        new Bg("img/5_background/layers/2_second_layer/2.png", 720),
-        new Bg("img/5_background/layers/2_second_layer/1.png", 1440),
-        new Bg("img/5_background/layers/2_second_layer/2.png", 2160),
-
-        new Bg("img/5_background/layers/1_first_layer/1.png", 0),
-        new Bg("img/5_background/layers/1_first_layer/2.png", 720),
-        new Bg("img/5_background/layers/1_first_layer/1.png", 1440),
-        new Bg("img/5_background/layers/1_first_layer/2.png", 2160),
+        new Bg("imgs/bgs/BG_1024px.png", 0, -2176), // clouds
+        new Bg("imgs/bgs/BG_1024px.png", 0, -2656), // mountains
+        new Bg("imgs/bgs/BG_1024px.png", 0, -3136), // desert
+        new Bg("imgs/bgs/BG_1024px.png", 0, -3616), // ground
     ], 
 
     [
@@ -30,7 +14,7 @@ const level01 = new Level(
         // new Npc(),
         // new Npc(),
 
-        new Boss()
+        // new Boss()
     ],
 
     [

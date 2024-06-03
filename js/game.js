@@ -12,8 +12,10 @@ const minscreenButton = document.getElementById('minscreen-button');
 const titleConatiner = document.getElementById('title-container');
 const canvasConatiner = document.getElementById('canvas-container');
 
-const skyLayer = level01.bgs[4];
-const mountainLayer = level01.bgs[8];
+const groundLayer = level01.bgs[0];
+const desertLayer = level01.bgs[1];
+const mountainLayer = level01.bgs[2];
+const cloudLayer = level01.bgs[3];
 
 function init() {
     canvas = document.getElementById("canvas");
@@ -28,14 +30,18 @@ window.addEventListener("keydown", (event) => {
     if(event.key == "a"){
         keyboard.LEFT = true;
         facingRdight = false;
-        skyLayer.moveBgRight = true;
+        groundLayer.moveBgRight = true;
+        desertLayer.moveBgRight = true;
         mountainLayer.moveBgRight = true;
+        cloudLayer.moveBgRight = true;
     } 
     if (event.key == "d") {
         keyboard.RIGHT = true;
         facingRight = true;
-        skyLayer.moveBgLeft = true;
+        groundLayer.moveBgLeft = true;
+        desertLayer.moveBgLeft = true;
         mountainLayer.moveBgLeft = true;
+        cloudLayer.moveBgLeft = true;
     } 
     if (event.key == " ") {
         keyboard.JUMP = true;
@@ -49,13 +55,17 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("keyup", (event) => {
     if(event.key == "a"){
         keyboard.LEFT = false;
-        skyLayer.moveBgRight = false;
+        groundLayer.moveBgRight = false;
+        desertLayer.moveBgRight = false;
         mountainLayer.moveBgRight = false;
+        cloudLayer.moveBgRight = false;
     }
     if (event.key == "d") {
         keyboard.RIGHT = false;
-        skyLayer.moveBgLeft = false;
+        groundLayer.moveBgLeft = false;
+        desertLayer.moveBgLeft = false;
         mountainLayer.moveBgLeft = false;
+        cloudLayer.moveBgLeft = false;
     }
     if (event.key == " ") {
         keyboard.JUMP = false;

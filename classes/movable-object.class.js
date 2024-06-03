@@ -37,7 +37,7 @@ class MovableObject extends DrawableObject {
         if(this instanceof ThrowableObject || this instanceof Egg) {
             return true;
         }
-        return this.y < 280;
+        return this.y < 340;
     }
 
 

@@ -205,7 +205,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        mo.drawCollider(this.ctx);
+        // mo.drawCollider(this.ctx);
         
         if (mo.otherDirection) {
             this.flipImageBack(mo);

@@ -22,16 +22,17 @@ class Player extends MovableObject {
     ];
 
     IMAGES_IDLE = [
-        "img/2_player/1_idle/idle/I-1.png",
-        "img/2_player/1_idle/idle/I-2.png",
-        "img/2_player/1_idle/idle/I-3.png",
-        "img/2_player/1_idle/idle/I-4.png",
-        "img/2_player/1_idle/idle/I-5.png",
-        "img/2_player/1_idle/idle/I-6.png",
-        "img/2_player/1_idle/idle/I-7.png",
-        "img/2_player/1_idle/idle/I-8.png",
-        "img/2_player/1_idle/idle/I-9.png",
-        "img/2_player/1_idle/idle/I-10.png"
+        "imgs/player/Player_Idle_01.png",
+        // "img/2_player/1_idle/idle/I-1.png",
+        // "img/2_player/1_idle/idle/I-2.png",
+        // "img/2_player/1_idle/idle/I-3.png",
+        // "img/2_player/1_idle/idle/I-4.png",
+        // "img/2_player/1_idle/idle/I-5.png",
+        // "img/2_player/1_idle/idle/I-6.png",
+        // "img/2_player/1_idle/idle/I-7.png",
+        // "img/2_player/1_idle/idle/I-8.png",
+        // "img/2_player/1_idle/idle/I-9.png",
+        // "img/2_player/1_idle/idle/I-10.png"
     ];
     
     IMAGES_JUMP = [
@@ -74,9 +75,9 @@ class Player extends MovableObject {
         this.loadImages(this.IMAGES_IDLE);
 
         this.x = 20;
-        this.y = 280;
-        this.height = 150;
-        this.width = 80;
+        this.y = 340;
+        this.height = 64;
+        this.width = 64;
         this.speed = 7;
         this.applyGravity();
 
