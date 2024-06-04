@@ -2,11 +2,12 @@ class World {
     ctx;
     player = new Player();
     boss = new Boss();
+    bottleIcon = new BottleIcon();
+    coinIcon = new CoinIcon();
     statusBar = new StatusBar();
     bossHpBar = new BossHpBar();
     bottleCount = new BottleCount();
     coinCount = new CoinCount();
-
     sky = new Sky();
     throwableObjects = [];
     eggs = [];
@@ -124,7 +125,7 @@ class World {
             if (!soundMuted) {
                 this.throwSound.play();
             }          
-            let bottle = new ThrowableObject(this.player.x + this.player.width/2, this.player.y + this.player.height/2, this.player);
+            let bottle = new ThrowableObject(this.player.x + this.player.width/2, this.player.y + this.player.height - 64, this.player);
             this.throwableObjects.push(bottle);
             this.keyboard.isShooting = true;
             this.bottleCount.decreaseBottleCount();
@@ -165,8 +166,8 @@ class World {
 
         this.addObjectsToMap(this.level.bgs);
         this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
 
 
@@ -178,6 +179,8 @@ class World {
         // fixed objects space start
         this.addToMap(this.statusBar);
         this.addToMap(this.bossHpBar);
+        this.addToMap(this.bottleIcon);
+        this.addToMap(this.coinIcon);
         this.bottleCount.displayBottelCountText(this.ctx);
         this.coinCount.displayCoinCountText(this.ctx);
         // fixed objects space end

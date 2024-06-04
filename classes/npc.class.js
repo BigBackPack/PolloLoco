@@ -17,9 +17,12 @@ class Npc extends MovableObject {
     
     
     IMAGES_WALKING = [
-        "img/3_npc/chicken_normal/1_walk/1_w.png",
-        "img/3_npc/chicken_normal/1_walk/2_w.png",
-        "img/3_npc/chicken_normal/1_walk/3_w.png"
+        "imgs/chicken/Chicken_Run_01.png",
+        "imgs/chicken/Chicken_Run_02.png",
+        "imgs/chicken/Chicken_Run_03.png",
+        "imgs/chicken/Chicken_Run_04.png",
+        "imgs/chicken/Chicken_Run_05.png",
+        "imgs/chicken/Chicken_Run_06.png",
     ];
 
     IMAGES_DEAD = [
@@ -28,13 +31,13 @@ class Npc extends MovableObject {
 
 
     constructor() {
-        super().loadImage("img/3_npc/chicken_normal/1_walk/1_w.png");
+        super().loadImage("imgs/chicken/Chicken_Run_01.png");
         this.loadImages(this.IMAGES_WALKING);
 
         this.x = 200 + this.randomStartPos;
-        this.y = 390;
-        this.height = 40;
-        this.width = 40;
+        this.y = 290;
+        this.height = 128;
+        this.width = 128;
 
         this.walkMinPos = 0;
         this.walkMaxPos = 400;

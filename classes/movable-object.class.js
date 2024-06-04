@@ -9,7 +9,6 @@ class MovableObject extends DrawableObject {
     moveBgLeft = false;
     moveBgRight = false;
 
-
     hurtSound = new Audio("audio/hurt.ogg");
 
 

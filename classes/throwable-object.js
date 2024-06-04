@@ -4,7 +4,7 @@ class ThrowableObject extends MovableObject {
 
 
     constructor(x, y, player) {
-        super().loadImage("img/6_ammo/bottle_rotation/1_bottle_rotation.png");
+        super().loadImage("imgs/bottle/Bottle_Throw_01.png");
         this.x = x;
         this.y = y;
         this.height = 50;
@@ -15,9 +15,9 @@ class ThrowableObject extends MovableObject {
         }
 
         if(this.otherDirection) {
-            this.throw(-20);
+            this.throw(-30);
         } else {
-            this.throw(20);
+            this.throw(30);
         }
     }
 

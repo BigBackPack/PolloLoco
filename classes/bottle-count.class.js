@@ -11,8 +11,8 @@ class BottleCount extends DrawableObject {
     constructor() {
         super().loadImage("imgs/bottle/Bottle_Throw_01.png");
         this.loadImages(this.IMAGES);
-        // this.x = 100;
-        // this.y = 100;
+        this.x = 100;
+        this.y = 100;
         this.width = 50;
         this.height = 50;
     }
@@ -31,7 +31,7 @@ class BottleCount extends DrawableObject {
     displayBottelCountText = (ctx) => { 
         ctx.font = "32px Pixelify Sans";
         ctx.fillStyle = "white";
-        ctx.fillText("SALSA:" + this.bottleCount, 30, 40);
+        ctx.fillText(": " + this.bottleCount, 56, 106);
     }
     
 }
