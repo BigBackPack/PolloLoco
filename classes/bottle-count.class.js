@@ -1,17 +1,18 @@
 class BottleCount extends DrawableObject {
 
-    bottleCount = 10;
+    bottleCount = 0;
+    currentImage = 0;
 
 
     IMAGES = [
-        "img/6_ammo/1_salsa_bottle_on_ground.png",   
+        "imgs/bottle/Bottle_Throw_01.png",   
     ]
 
     constructor() {
-        super().loadImage("img/6_ammo/1_salsa_bottle_on_ground.png");
+        super().loadImage("imgs/bottle/Bottle_Throw_01.png");
         this.loadImages(this.IMAGES);
-        this.x = 100;
-        this.y = 100;
+        // this.x = 100;
+        // this.y = 100;
         this.width = 50;
         this.height = 50;
     }
@@ -28,7 +29,7 @@ class BottleCount extends DrawableObject {
 
 
     displayBottelCountText = (ctx) => { 
-        ctx.font = "24px Pixelify Sans";
+        ctx.font = "32px Pixelify Sans";
         ctx.fillStyle = "white";
         ctx.fillText("SALSA:" + this.bottleCount, 30, 40);
     }

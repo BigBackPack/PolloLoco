@@ -13,38 +13,24 @@ class Player extends MovableObject {
 
 
     IMAGES_WALKING = [
-        "img/2_player/2_walk/W-21.png",
-        "img/2_player/2_walk/W-22.png",
-        "img/2_player/2_walk/W-23.png",
-        "img/2_player/2_walk/W-24.png",
-        "img/2_player/2_walk/W-25.png",
-        "img/2_player/2_walk/W-26.png",
+        "imgs/player/Player_Run_01.png",
+        "imgs/player/Player_Run_02.png",
     ];
 
     IMAGES_IDLE = [
         "imgs/player/Player_Idle_01.png",
-        // "img/2_player/1_idle/idle/I-1.png",
-        // "img/2_player/1_idle/idle/I-2.png",
-        // "img/2_player/1_idle/idle/I-3.png",
-        // "img/2_player/1_idle/idle/I-4.png",
-        // "img/2_player/1_idle/idle/I-5.png",
-        // "img/2_player/1_idle/idle/I-6.png",
-        // "img/2_player/1_idle/idle/I-7.png",
-        // "img/2_player/1_idle/idle/I-8.png",
-        // "img/2_player/1_idle/idle/I-9.png",
-        // "img/2_player/1_idle/idle/I-10.png"
+        "imgs/player/Player_Idle_02.png",
+        "imgs/player/Player_Idle_03.png",
+        "imgs/player/Player_Idle_04.png",
     ];
     
     IMAGES_JUMP = [
-        "img/2_player/3_jump/J-31.png",
-        "img/2_player/3_jump/J-32.png",
-        "img/2_player/3_jump/J-33.png",
-        "img/2_player/3_jump/J-34.png",
-        "img/2_player/3_jump/J-35.png",
-        "img/2_player/3_jump/J-36.png",
-        "img/2_player/3_jump/J-37.png",
-        "img/2_player/3_jump/J-38.png",
-        "img/2_player/3_jump/J-39.png",
+        "imgs/player/Player_Jump_01.png",
+        "imgs/player/Player_Jump_02.png",
+        "imgs/player/Player_Jump_03.png",
+        "imgs/player/Player_Jump_03.png",
+        "imgs/player/Player_Jump_03.png",
+        "imgs/player/Player_Jump_03.png",
     ];
 
     IMAGES_DEAD = [
@@ -58,9 +44,8 @@ class Player extends MovableObject {
     ];
 
     IMAGES_HURT = [
-        "img/2_player/4_hurt/H-41.png",
-        "img/2_player/4_hurt/H-42.png",
-        "img/2_player/4_hurt/H-43.png",
+        "imgs/player/Player_Hurt_01.png",
+        "imgs/player/Player_Hurt_02.png",
     ];
 
     currentImage = 0;

@@ -16,11 +16,12 @@ const groundLayer = level01.bgs[0];
 const desertLayer = level01.bgs[1];
 const mountainLayer = level01.bgs[2];
 const cloudLayer = level01.bgs[3];
+const cloudBgLayer = level01.bgs[4];
 
 function init() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
-
+    
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
 }
@@ -34,6 +35,7 @@ window.addEventListener("keydown", (event) => {
         desertLayer.moveBgRight = true;
         mountainLayer.moveBgRight = true;
         cloudLayer.moveBgRight = true;
+        cloudBgLayer.moveBgRight = true;
     } 
     if (event.key == "d") {
         keyboard.RIGHT = true;
@@ -42,6 +44,7 @@ window.addEventListener("keydown", (event) => {
         desertLayer.moveBgLeft = true;
         mountainLayer.moveBgLeft = true;
         cloudLayer.moveBgLeft = true;
+        cloudBgLayer.moveBgLeft = true;
     } 
     if (event.key == " ") {
         keyboard.JUMP = true;
@@ -59,6 +62,7 @@ window.addEventListener("keyup", (event) => {
         desertLayer.moveBgRight = false;
         mountainLayer.moveBgRight = false;
         cloudLayer.moveBgRight = false;
+        cloudBgLayer.moveBgRight = false;
     }
     if (event.key == "d") {
         keyboard.RIGHT = false;
@@ -66,6 +70,7 @@ window.addEventListener("keyup", (event) => {
         desertLayer.moveBgLeft = false;
         mountainLayer.moveBgLeft = false;
         cloudLayer.moveBgLeft = false;
+        cloudBgLayer.moveBgLeft = false;
     }
     if (event.key == " ") {
         keyboard.JUMP = false;

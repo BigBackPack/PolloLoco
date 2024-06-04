@@ -65,7 +65,7 @@ class World {
                     && (!(enemy instanceof Boss))) {
                         enemy.dead(this.level.enemies, enemy);
                 } else {
-                    this.player.hit();
+                    this.player.hit(0.5);
                     this.statusBar.setPercentage(this.player.health);
                 }
             }
@@ -93,7 +93,7 @@ class World {
 
         this.eggs.forEach((egg) => {
             if (this.player.isColliding(egg)){
-                this.player.hit();
+                this.player.hit(20);
                 this.statusBar.setPercentage(this.player.health);
                 egg.removeEgg(this.eggs, egg);
             }

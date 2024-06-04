@@ -7,8 +7,6 @@ class Bg extends MovableObject {
         this.width = 4096;
         this.x = x;
         this.y = y;
-        console.log("x:" + x,"y:" + y);
-        // this.y = 780 - this.height;
         this.parallax();
         this.path = imagePath;
     }
@@ -17,15 +15,17 @@ class Bg extends MovableObject {
     parallax() {
         setInterval(() => {
             if (this.moveBgLeft) {
-                if(this.y == -3136 && this.x <= 0) {this.moveBGLeft(2);} // desert
-                if(this.y == -2656 && this.x <= 0) {this.moveBGLeft(1.5);} // mountains
+                if(this.y == -3136 && this.x <= 0) {this.moveBGLeft(3);} // desert
+                if(this.y == -2656 && this.x <= 0) {this.moveBGLeft(2.5);} // mountains
                 if(this.y == -2176 && this.x <= 0) {this.moveBGLeft(1);} // clouds
+                if(this.y == -2176 && this.x <= 0) {this.moveBGLeft(0.5);} // clouds BG
             } 
 
             if (this.moveBgRight) {
-                if(this.y == -3136 && this.x < 0) {this.moveBGRight(2);} // desert
-                if(this.y == -2656 && this.x < 0) {this.moveBGRight(1.5);} // mountains
+                if(this.y == -3136 && this.x < 0) {this.moveBGRight(3);} // desert
+                if(this.y == -2656 && this.x < 0) {this.moveBGRight(2.5);} // mountains
                 if(this.y == -2176 && this.x < 0) {this.moveBGRight(1);} // clouds
+                if(this.y == -2176 && this.x < 0) {this.moveBGRight(0.5);} // clouds BG
             } 
         }, 1000/60);        
     }

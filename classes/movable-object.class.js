@@ -83,8 +83,8 @@ class MovableObject extends DrawableObject {
     }
 
 
-    hit() {
-        this.health -= 2;
+    hit(dmg) {
+        this.health -= dmg;
         if (this.health < 0) {
             this.health = 0;
         } else {
