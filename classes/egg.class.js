@@ -1,25 +1,32 @@
 class Egg extends MovableObject {
     
     world;
+    currentImage = 0;
+
+
+    IMAGES = [
+        "imgs/Egg/Egg_Attack_1.png",
+        "imgs/Egg/Egg_Attack_2.png",
+    ]
 
 
     constructor(x, y, boss) {
-        super().loadImage("img/8_coin/coin_2.png");
+        super().loadImage("imgs/Egg/Egg_Attack_1.png");
+        this.loadImages(this.IMAGES);
         this.x = x;
         this.y = y;
-        this.height = 50;
-        this.width = 50;
+        this.height = 64;
+        this.width = 64;
 
-        this.throw(-10);
 
         if (boss) {
             this.otherDirection = boss.otherDirection;
         }
 
         if(this.otherDirection) {
-            this.throw(-2);
+            this.throw(-5);
         } else {
-            this.throw(2);
+            this.throw(5);
         }
     }
 

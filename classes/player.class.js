@@ -84,6 +84,7 @@ class Player extends MovableObject {
         setInterval(() => {
             // movement
             this.walkingSound.pause();
+            this.bossTriggerPos();
 
             if (this.world.keyboard.RIGHT && this.x < 2650) {
                 this.moveRight();
@@ -153,5 +154,16 @@ class Player extends MovableObject {
         coin.height = 0;
         coin.width = 0; 
         coin.pickedUp = true;
+    }
+
+
+    bossTriggerPos() {
+        if (this.x > 1200) {
+            document.getElementById("canvas").style.backgroundColor = "#ffd900";
+            this.world.bossTriggered = true;
+        } else {
+            document.getElementById("canvas").style.backgroundColor = "#4793AF";
+            this.world.bossTriggered = false;
+        }
     }
 }

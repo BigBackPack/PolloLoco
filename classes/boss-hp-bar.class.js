@@ -1,12 +1,18 @@
 class BossHpBar extends DrawableObject {
 
     IMAGES = [
-        "img/7_statusbars/2_statusbar_endboss/orange/orange0.png",
-        "img/7_statusbars/2_statusbar_endboss/orange/orange20.png",
-        "img/7_statusbars/2_statusbar_endboss/orange/orange40.png",
-        "img/7_statusbars/2_statusbar_endboss/orange/orange60.png",
-        "img/7_statusbars/2_statusbar_endboss/orange/orange80.png",
-        "img/7_statusbars/2_statusbar_endboss/orange/orange100.png",
+        "imgs/ui/boss_hp_bar/HP_Bar_Boss_01.png",
+        "imgs/ui/boss_hp_bar/HP_Bar_Boss_02.png",
+        "imgs/ui/boss_hp_bar/HP_Bar_Boss_03.png",
+        "imgs/ui/boss_hp_bar/HP_Bar_Boss_04.png",
+        "imgs/ui/boss_hp_bar/HP_Bar_Boss_05.png",
+        "imgs/ui/boss_hp_bar/HP_Bar_Boss_06.png",
+        "imgs/ui/boss_hp_bar/HP_Bar_Boss_07.png",
+        "imgs/ui/boss_hp_bar/HP_Bar_Boss_08.png",
+        "imgs/ui/boss_hp_bar/HP_Bar_Boss_09.png",
+        "imgs/ui/boss_hp_bar/HP_Bar_Boss_10.png",
+        "imgs/ui/boss_hp_bar/HP_Bar_Boss_11.png",
+
     ]
 
     percentage = 100;
@@ -15,10 +21,10 @@ class BossHpBar extends DrawableObject {
     constructor() {
         super();
         this.loadImages(this.IMAGES);
-        this.x = 490;
-        this.y = 50;
-        this.height = 50;
-        this.width = 200;
+        this.x = 440;
+        this.y = 20;
+        this.height = 128;
+        this.width = 256;
         this.setPercentage(100);
     }
 
@@ -32,14 +38,24 @@ class BossHpBar extends DrawableObject {
 
     resolveImageIndex() {
         if(this.percentage == 100) {
-            return 5;
+            return 10;
+        } else if (this.percentage >= 90) {
+            return 9;
         } else if (this.percentage >= 80) {
-            return 4;
+            return 8;
+        } else if (this.percentage >= 70) {
+            return 7;
         } else if (this.percentage >= 60) {
-            return 3;
+            return 6;
+        } else if (this.percentage >= 50) {
+            return 5;
         } else if (this.percentage >= 40) {
-            return 2;
+            return 4;
+        } else if (this.percentage >= 30) {
+            return 3;
         } else if (this.percentage >= 20) {
+            return 2;
+        } else if (this.percentage >= 10) {
             return 1;
         } else {
             return 0;

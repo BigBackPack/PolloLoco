@@ -32,6 +32,9 @@ class Bottle extends MovableObject {
         "imgs/bottle/Bottle_Idle_06.png",
         "imgs/bottle/Bottle_Idle_05.png",
         "imgs/bottle/Bottle_Idle_05.png",
+        "imgs/bottle/Bottle_Idle_08.png",
+        "imgs/bottle/Bottle_Idle_09.png",
+        "imgs/bottle/Bottle_Idle_10.png",
         "imgs/bottle/Bottle_Idle_07.png",
     ];
 

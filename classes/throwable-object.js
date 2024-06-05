@@ -15,9 +15,9 @@ class ThrowableObject extends MovableObject {
         }
 
         if(this.otherDirection) {
-            this.throw(-30);
+            this.throw(-20);
         } else {
-            this.throw(30);
+            this.throw(20);
         }
     }
 

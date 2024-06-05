@@ -11,20 +11,24 @@ class Boss extends MovableObject {
 
 
     IMAGES_WALKING = [
-        "img/4_boss/1_walk/G2.png",
-        "img/4_boss/1_walk/G3.png",
-        "img/4_boss/1_walk/G4.png",
-        "img/4_boss/2_alert/G5.png",
+        "imgs/boss/Boss_01.png",
+        "imgs/boss/Boss_02.png",
+        "imgs/boss/Boss_03.png",
+        "imgs/boss/Boss_04.png",
+        "imgs/boss/Boss_05.png",
+        "imgs/boss/Boss_06.png",
+        "imgs/boss/Boss_07.png",
+        "imgs/boss/Boss_08.png",
     ];
 
 
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 400;
-        this.y = 240
-        this.width = 200;
-        this.height = 200;
+        this.x = 2200;
+        this.y = 140
+        this.width = 256;
+        this.height = 256;
 
         this.walkMinPos = 1600;
         this.walkMaxPos = 2400;
@@ -62,7 +66,7 @@ class Boss extends MovableObject {
 
     
     dead(path, enemy) {
-        this.hp -= 20;
+        this.hp -= 10;
 
         if (this.hp > 0) {
             console.log(this.hp);

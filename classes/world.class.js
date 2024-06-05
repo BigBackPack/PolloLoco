@@ -18,6 +18,7 @@ class World {
     throwSound = new Audio("audio/throw.ogg");
 
     isAttacking = false;
+    bossTriggered = false;
 
 
     constructor(canvas, keyboard) {
@@ -54,7 +55,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.throwObjects();  
-        }, 1000/60);
+        }, 1000/80);
     }
 
 
@@ -99,7 +100,7 @@ class World {
                 egg.removeEgg(this.eggs, egg);
             }
 
-            if (egg.y > 400) {
+            if (egg.y > 350) {
                 egg.removeEgg(this.eggs, egg);
             }
         })
@@ -167,18 +168,18 @@ class World {
         this.addObjectsToMap(this.level.bgs);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.eggs);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
-
-
         this.addObjectsToMap(this.throwableObjects);
-        this.addObjectsToMap(this.eggs);
         this.addToMap(this.player);
 
         this.ctx.translate(-this.camPosX, 0);
         // fixed objects space start
         this.addToMap(this.statusBar);
-        this.addToMap(this.bossHpBar);
+        if (this.bossTriggered == true) {
+            this.addToMap(this.bossHpBar);
+        }
         this.addToMap(this.bottleIcon);
         this.addToMap(this.coinIcon);
         this.bottleCount.displayBottelCountText(this.ctx);

@@ -56,7 +56,7 @@ class MovableObject extends DrawableObject {
     }
 
 
-   moveRight() {
+    moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
     }
