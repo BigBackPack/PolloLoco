@@ -19,6 +19,7 @@ class World {
 
     isAttacking = false;
     bossTriggered = false;
+    // bossIsDead = false;
 
 
     constructor(canvas, keyboard) {
@@ -40,9 +41,6 @@ class World {
          this.level.coins.forEach((coin, index) => {
              coin.x = coinX + index * 200;
          });
-
-        this.bossAttackManager();
-
     }
 
 
@@ -135,21 +133,29 @@ class World {
 
 
     eggAttack() {
-        if (this.isAttacking == true) {
+        if (this.isAttacking) {
             let egg = new Egg(this.boss.x + this.boss.width/2, this.boss.y + this.boss.height/2, this.boss);
             this.eggs.push(egg);
         }
     }
 
 
-    bossAttackManager() {
-        if (!this.isAttacking) { // Check if not already attacking
-          this.isAttacking = true;
-          this.eggAttack();
-          setTimeout(() => {
-            this.isAttacking = false; // Reset after the attack
-            this.bossAttackManager(); // Schedule the next attack
-          }, 5000);
+    bossAttackManager(boss) {
+        if (!this.isAttacking) { 
+            const hasBoss = this.level.enemies.some(enemy => enemy instanceof Boss);
+
+            if (hasBoss) {
+                this.bossAttackManager();
+            } else {
+                console.log("Boss is dead!");
+            }
+            
+            this.isAttacking = true;
+            this.eggAttack();
+            setTimeout(() => {
+                this.isAttacking = false;
+                this.bossAttackManager();
+            }, 2000);
         }
     }
 

@@ -4,11 +4,9 @@ class Boss extends MovableObject {
     hp = 100;
     currentImage = 0;
     goalRight = false;
-    isDead = false;
-
+    // bossIsDead;
     walkMinPos;
     walkMaxPos;
-
 
     IMAGES_WALKING = [
         "imgs/boss/Boss_01.png",
@@ -21,10 +19,26 @@ class Boss extends MovableObject {
         "imgs/boss/Boss_08.png",
     ];
 
+    IMAGES_HURT = [
+        "imgs/boss/Boss_Hurt_01.png",
+        "imgs/boss/Boss_Hurt_02.png",
+    ];
+
+    IMAGES_DYING = [
+        // "imgs/boss/Boss_Dead_01.png",
+    ];
+
+    // IMAGES_DEAD = [
+    //     "imgs/boss/Boss_Dead_09.png",
+    // ];
+
 
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_HURT);
+        // this.loadImages(this.IMAGES_DYING);
+        // this.loadImages(this.IMAGES_DEAD);
         this.x = 2200;
         this.y = 140
         this.width = 256;
@@ -33,8 +47,12 @@ class Boss extends MovableObject {
         this.walkMinPos = 1600;
         this.walkMaxPos = 2400;
 
+        // this.bossIsDead = false;
+
         this.animate();
     }
+
+
 
 
     checkDirection() {
@@ -53,8 +71,7 @@ class Boss extends MovableObject {
             this.x -= 10;
             this.otherDirection = false;
         } 
-
-        this.playAnimation(this.IMAGES_WALKING);
+            this.playAnimation(this.IMAGES_WALKING);
     }
 
 
@@ -68,14 +85,21 @@ class Boss extends MovableObject {
     dead(path, enemy) {
         this.hp -= 10;
 
-        if (this.hp > 0) {
-            console.log(this.hp);
-        } else {
-            this.x = -100;
-            this.y = -100;
-            this.width = 0;
-            this.height = 0; 
-            window.location = "win-screen.html";
+        this.playAnimation(this.IMAGES_HURT);
+        if (this.hp <= 0) {
+            // this.bossIsDead = true;
+            path.splice(enemy, 1); 
+
+            // this.x = -100;
+            // this.y = -100;
+            // this.width = 0;
+            // this.height = 0; 
+            setTimeout(this.loadWinScreen, 20000);
         }
     }
+
+    loadWinScreen() {
+        window.location = "win-screen.html";
+    }
+
 }

@@ -15,6 +15,9 @@ class Player extends MovableObject {
     IMAGES_WALKING = [
         "imgs/player/Player_Run_01.png",
         "imgs/player/Player_Run_02.png",
+        "imgs/player/Player_Run_03.png",
+        "imgs/player/Player_Run_04.png",
+        "imgs/player/Player_Run_05.png",
     ];
 
     IMAGES_IDLE = [
@@ -22,11 +25,14 @@ class Player extends MovableObject {
         "imgs/player/Player_Idle_02.png",
         "imgs/player/Player_Idle_03.png",
         "imgs/player/Player_Idle_04.png",
+        "imgs/player/Player_Idle_05.png",
+        "imgs/player/Player_Idle_06.png",
     ];
     
     IMAGES_JUMP = [
         "imgs/player/Player_Jump_01.png",
         "imgs/player/Player_Jump_02.png",
+        "imgs/player/Player_Jump_03.png",
         "imgs/player/Player_Jump_03.png",
         "imgs/player/Player_Jump_03.png",
         "imgs/player/Player_Jump_03.png",
@@ -48,6 +54,10 @@ class Player extends MovableObject {
         "imgs/player/Player_Hurt_02.png",
     ];
 
+    IMAGES_THROW = [
+        "imgs/player/Player_Throw_01.png",
+    ];
+
     currentImage = 0;
 
 
@@ -58,6 +68,7 @@ class Player extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_IDLE);
+        this.loadImages(this.IMAGES_THROW);
 
         this.x = 20;
         this.y = 340;
@@ -88,6 +99,7 @@ class Player extends MovableObject {
 
             if (this.world.keyboard.RIGHT && this.x < 2650) {
                 this.moveRight();
+                this.walkingSound.pause();
                 if (!soundMuted) {
                     this.walkingSound.play();
                 }
@@ -95,6 +107,7 @@ class Player extends MovableObject {
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
+                this.walkingSound.pause();
                 if (!soundMuted) {
                     this.walkingSound.play();
                 }            
@@ -106,6 +119,7 @@ class Player extends MovableObject {
 
             if(this.world.keyboard.JUMP && !this.aboveGround()) {
                 this.jump(); 
+                this.jumpSound.pause();
                 if (!soundMuted) {
                     this.jumpSound.play();
                 }
@@ -120,6 +134,8 @@ class Player extends MovableObject {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.aboveGround()) {
                 this.playAnimation(this.IMAGES_JUMP);
+            } else if (this.world.keyboard.isShooting) {
+                this.playAnimation(this.IMAGES_THROW);
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.IMAGES_WALKING);
             } else {

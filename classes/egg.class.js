@@ -5,13 +5,13 @@ class Egg extends MovableObject {
 
 
     IMAGES = [
-        "imgs/Egg/Egg_Attack_1.png",
-        "imgs/Egg/Egg_Attack_2.png",
+        "imgs/egg/Egg_Attack_1.png",
+        "imgs/egg/Egg_Attack_2.png",
     ]
 
 
     constructor(x, y, boss) {
-        super().loadImage("imgs/Egg/Egg_Attack_1.png");
+        super().loadImage("imgs/egg/Egg_Attack_1.png");
         this.loadImages(this.IMAGES);
         this.x = x;
         this.y = y;
