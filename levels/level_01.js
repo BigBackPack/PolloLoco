@@ -15,7 +15,7 @@ const level01 = new Level(
         // new Npc(),
         // new Npc(),
 
-        new Boss(),
+        // new Boss(),
     ],
 
     [

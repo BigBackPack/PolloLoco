@@ -4,11 +4,11 @@ class CoinCount extends DrawableObject {
 
 
     IMAGES = [
-        "img/6_ammo/1_salsa_bottle_on_ground.png",   
+        "imgs/bottle/Bottle_Idle_02.png",   
     ]
 
     constructor() {
-        super().loadImage("img/6_ammo/1_salsa_bottle_on_ground.png");
+        super().loadImage("imgs/bottle/Bottle_Idle_02.png");
         this.loadImages(this.IMAGES);
         this.x = 100;
         this.y = 100;

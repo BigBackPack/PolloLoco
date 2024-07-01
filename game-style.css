@@ -1,21 +1,33 @@
 body{
     background-color: #151515;
     color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 100%;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 1.4rem;
+    height: 100dvh;
     text-rendering: crisp-edges;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: top;
     align-items: center;
     margin: 0px;
+
+    background-image: url(imgs/site_bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    image-rendering: pixelated;
 }
 
 canvas{
     background-color: #4793AF;
     display: block;
     image-rendering: pixelated;
+}
+
+a{
+    text-decoration: none;
+    color: white;
 }
 
 #canvas-container {
@@ -58,7 +70,12 @@ canvas{
 
 #title-container {
     display: flex;
-    flex-direction: column;;
+    flex-direction: column;
+}
+
+#title-container img{
+    width: 350px;
+    height: auto;
 }
 
 #fullscreen-overlay {
@@ -75,6 +92,22 @@ canvas{
     top: 0;
     left: 0;
     z-index: 100;
+}
+
+.legal-container{
+    display: flex;
+    position: fixed;
+    top: 24px;
+    right: 24px;
+}
+
+.legal-links{
+    margin-left: 14px;
+    color: rgba(255, 255, 255, 0.466);
+}
+
+.legal-links:hover{
+    color: white;
 }
 
 .warning-text {

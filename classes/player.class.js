@@ -40,13 +40,13 @@ class Player extends MovableObject {
     ];
 
     IMAGES_DEAD = [
-        "img/2_player/5_dead/D-51.png",
-        "img/2_player/5_dead/D-52.png",
-        "img/2_player/5_dead/D-53.png",
-        "img/2_player/5_dead/D-54.png",
-        "img/2_player/5_dead/D-55.png",
-        "img/2_player/5_dead/D-56.png",
-        "img/2_player/5_dead/D-57.png",
+        "imgs/player/Player_Dead_01.png",
+        // "imgs/2_player/5_dead/D-52.png",
+        // "imgs/2_player/5_dead/D-53.png",
+        // "imgs/2_player/5_dead/D-54.png",
+        // "imgs/2_player/5_dead/D-55.png",
+        // "imgs/2_player/5_dead/D-56.png",
+        // "imgs/2_player/5_dead/D-57.png",
     ];
 
     IMAGES_HURT = [
@@ -62,7 +62,7 @@ class Player extends MovableObject {
 
 
     constructor() {
-        super().loadImage("img/2_player/1_idle/idle/I-1.png");
+        super().loadImage("imgs/player/Player_Idle_01.png",);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMP);
         this.loadImages(this.IMAGES_DEAD);

@@ -1,7 +1,7 @@
 class Sky extends MovableObject {
 
     constructor(imagePath, x, y) {
-        super().loadImage("img/5_background/layers/air.png");
+        super().loadImage("imgs/bgs/BG_1024px.png");
         // super().loadImage(imagePath);
 
         this.x = 0;
