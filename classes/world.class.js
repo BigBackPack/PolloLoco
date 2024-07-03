@@ -39,7 +39,7 @@ class World {
             bottle.x = bottleX + index * 500;
         });
 
-         // Set positions for bottles
+         // Set positions for coins
          let coinX = 300;
          this.level.coins.forEach((coin, index) => {
              coin.x = coinX + index * 200;

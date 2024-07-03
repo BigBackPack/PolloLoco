@@ -42,12 +42,26 @@ class Player extends MovableObject {
 
     IMAGES_DEAD = [
         "imgs/player/Player_Dead_01.png",
-        // "imgs/2_player/5_dead/D-52.png",
-        // "imgs/2_player/5_dead/D-53.png",
-        // "imgs/2_player/5_dead/D-54.png",
-        // "imgs/2_player/5_dead/D-55.png",
-        // "imgs/2_player/5_dead/D-56.png",
-        // "imgs/2_player/5_dead/D-57.png",
+        "imgs/player/Player_Dead_01.png",
+        "imgs/player/Player_Dead_01.png",
+        "imgs/player/Player_Dead_02.png",
+        "imgs/player/Player_Dead_02.png",
+        "imgs/player/Player_Dead_02.png",
+        "imgs/player/Player_Dead_03.png",
+        "imgs/player/Player_Dead_03.png",
+        "imgs/player/Player_Dead_03.png",
+        "imgs/player/Player_Dead_04.png",
+        "imgs/player/Player_Dead_04.png",
+        "imgs/player/Player_Dead_04.png",
+        "imgs/player/Player_Dead_05.png",
+        "imgs/player/Player_Dead_05.png",
+        "imgs/player/Player_Dead_05.png",
+        "imgs/player/Player_Dead_05.png",
+        "imgs/player/Player_Dead_05.png",
+        "imgs/player/Player_Dead_05.png",
+        "imgs/player/Player_Dead_05.png",
+        "imgs/player/Player_Dead_05.png",
+        "imgs/player/Player_Dead_05.png",
     ];
 
     IMAGES_HURT = [
@@ -130,7 +144,9 @@ class Player extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                // window.location = "lose-screen.html";
+                setTimeout(() => {
+                    window.location = "lose-screen.html";
+                }, 1000);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.aboveGround()) {

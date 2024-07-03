@@ -12,12 +12,17 @@ const level01 = new Level(
     ],
 
     [
-        // new Npc(),
-        // new Npc(),
-        // new Npc(),
-        // new Npc(),
-        // new Npc(),
-        // new Npc(),
+        new Npc(),
+        new Npc(),
+        new Npc(),
+        new Npc(),
+        new Npc(),
+
+        new Chick(),
+        new Chick(),
+        new Chick(),
+        new Chick(),
+        new Chick(),
 
         new Boss(),
     ],

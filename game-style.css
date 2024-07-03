@@ -30,6 +30,16 @@ a{
     color: white;
 }
 
+.cover{
+    background-color: rgba(0, 0, 0, 0.705);
+    backdrop-filter: blur(2px);
+    width: 100%;
+    height: 100dvh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 #canvas-container {
     position: relative;
     display: flex;
@@ -71,6 +81,7 @@ a{
 #title-container {
     display: flex;
     flex-direction: column;
+    z-index: 100;
 }
 
 #title-container img{

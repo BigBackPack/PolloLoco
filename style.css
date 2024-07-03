@@ -21,6 +21,10 @@ body{
     image-rendering: pixelated;
 }
 
+.lost-screen-img{
+    background-image: url(imgs/site_bg_lost.png);
+}
+
 a{
     text-decoration: none;
     color: white;
@@ -49,7 +53,7 @@ a h2{
 
 h3{
     font-family: "Pixelify Sans", sans-serif;
-    font-size: 4rem;
+    font-size: 8rem;
 }
 
 .content-container img{
