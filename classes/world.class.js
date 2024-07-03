@@ -1,7 +1,7 @@
 class World {
     ctx;
     player = new Player();
-    boss = new Boss();
+    boss;
     bottleIcon = new BottleIcon();
     coinIcon = new CoinIcon();
     statusBar = new StatusBar();
@@ -19,7 +19,7 @@ class World {
 
     isAttacking = false;
     bossTriggered = false;
-    // bossIsDead = false;
+    bossAggro = false;
 
 
     constructor(canvas, keyboard) {
@@ -29,6 +29,9 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.boss = new Boss(this);
+
+        console.log('World constructor:', this.boss.world);
 
         // Set positions for bottles
         let bottleX = 500;
@@ -52,8 +55,16 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            this.throwObjects();  
-        }, 1000/80);
+            this.throwObjects();
+            this.checkPlayerPosition();
+        }, 1000/200);
+    }
+
+
+    checkPlayerPosition() {
+        if (this.player.x > 1200 && !this.bossAggro) {
+            this.triggerBoss();
+        }
     }
 
 
@@ -61,9 +72,10 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.player.isColliding(enemy)) {
                 if (this.isPlayerAboveEnemy(this.player, enemy) 
-                    && (this.player.jumpPeak == true)
-                    && (!(enemy instanceof Boss))) {
-                        enemy.dead(this.level.enemies, enemy);
+                    && this.player.jumpPeak
+                    && !(enemy instanceof Boss)) {
+                    enemy.dead(this.level.enemies, enemy);
+                    this.player.jumpPeak = false; 
                 } else {
                     this.player.hit(0.5);
                     this.statusBar.setPercentage(this.player.health);
@@ -114,9 +126,19 @@ class World {
 
     // Helper method to check if the player is above the enemy
     isPlayerAboveEnemy(player, enemy) {
-        return player.y + player.height <= enemy.y + (enemy.height / 2);
-    }
+        const playerBottom = player.y + player.height;
+        const enemyTop = enemy.y;
+        const enemyMiddleY = enemy.y + enemy.height / 2;
     
+        const isAbove = playerBottom <= enemyMiddleY;
+        const isHorizontallyAligned = (
+            player.x + player.width > enemy.x && 
+            player.x < enemy.x + enemy.width
+        );
+    
+        return isAbove && isHorizontallyAligned;
+    }
+
    
     throwObjects() {
         if(this.keyboard.THROW && this.keyboard.isShooting == false
@@ -132,37 +154,40 @@ class World {
     }
 
 
-    eggAttack() {
-        if (this.isAttacking) {
-            let egg = new Egg(this.boss.x + this.boss.width/2, this.boss.y + this.boss.height/2, this.boss);
-            this.eggs.push(egg);
-        }
+    triggerBoss() {
+        document.getElementById("canvas").style.backgroundColor = "#ffd900";
+        this.bossTriggered = true;
+        this.bossAggro = true;
+        this.bossAttack();
     }
 
 
-    bossAttackManager(boss) {
-        if (!this.isAttacking) { 
-            const hasBoss = this.level.enemies.some(enemy => enemy instanceof Boss);
-
-            if (hasBoss) {
-                this.bossAttackManager();
-            } else {
-                console.log("Boss is dead!");
-            }
-            
+    bossAttack() {
+        if (!this.isAttacking && !this.boss.bossIsDead) {
             this.isAttacking = true;
             this.eggAttack();
             setTimeout(() => {
                 this.isAttacking = false;
-                this.bossAttackManager();
+                if (this.bossAggro && !this.boss.bossIsDead) {
+                    this.bossAttack();
+                }
             }, 2000);
         }
     }
 
 
-    bossAttack() {
-        this.isAttacking = false;
-        this.bossAttackManager();
+    eggAttack() {
+        if (this.isAttacking && !this.boss.bossIsDead) {
+            let egg = new Egg(this.boss.x + this.boss.width / 2, this.boss.y + this.boss.height / 2, this.boss);
+            this.eggs.push(egg);
+        }
+    }
+
+
+    onBossDeath() {
+        this.bossAggro = false; 
+        this.isAttacking = false; 
+        this.boss.bossIsDead = true;
     }
 
 

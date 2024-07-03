@@ -67,10 +67,8 @@ function checkOrientation() {
   if (screen.orientation && screen.orientation.type) {
     const orientation = screen.orientation.type;
     if (orientation === 'landscape-primary' || orientation === 'landscape-secondary') {
-      // console.log("Landscape mode");
       document.getElementById("fullscreen-overlay").style.display = "none"
     } else if (orientation === 'portrait-primary' || orientation === 'portrait-secondary') {
-      // console.log("Portrait mode");
       document.getElementById("fullscreen-overlay").style.display = "flex"
     } else {
       console.log("Unknown orientation");

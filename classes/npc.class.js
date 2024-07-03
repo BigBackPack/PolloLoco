@@ -4,16 +4,13 @@ class Npc extends MovableObject {
     y;
     height;
     width;
-    randomStartPos = Math.random() * 500;
-    speed = Math.random() + 0.5;
+    randomStartPos = Math.random() * 1300;
+    speed = (Math.random() * 2) + 1;
     currentImage = 0;
     goalRight = false;
     isDead = false;
 
     chickenHurtSound = new Audio("audio/chicken.ogg");
-
-    walkMinPos;
-    walkMaxPos;
     
     
     IMAGES_WALKING = [
@@ -39,27 +36,24 @@ class Npc extends MovableObject {
         this.height = 128;
         this.width = 128;
 
-        this.walkMinPos = 0;
-        this.walkMaxPos = 400;
-
         this.animate();
     }
 
 
     checkDirection() {
-        if (this.x < 0) {
+        if (this.x < 100) {
             this.goalRight = true;
         } 
-        if (this.x > 700) {
+        if (this.x > 1700) {
             this.goalRight = false;  
         }
 
         if (this.goalRight == true) {
-            this.x += 3;
+            this.x += 3 * this.speed;
             this.otherDirection = true;
         }
         else if (this.goalRight == false) {
-            this.x -= 3;
+            this.x -= 3 * this.speed;
             this.otherDirection = false;
         } 
 
@@ -70,7 +64,7 @@ class Npc extends MovableObject {
     animate() {
         setInterval(() => {
             this.checkDirection();
-        }, 1000 / 20); //60 fps    
+        }, 1000 / 20); //20 fps    
     }
 
 

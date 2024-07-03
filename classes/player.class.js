@@ -8,6 +8,7 @@ class Player extends MovableObject {
     pickupSound = new Audio("audio/pickup.ogg");
     pickupCoinSound = new Audio("audio/coin.ogg");
     health = 100;
+    bossAggro = false;
 
     jumpPeak = false;
 
@@ -129,7 +130,7 @@ class Player extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                window.location = "lose-screen.html";
+                // window.location = "lose-screen.html";
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.aboveGround()) {
@@ -177,6 +178,10 @@ class Player extends MovableObject {
         if (this.x > 1200) {
             document.getElementById("canvas").style.backgroundColor = "#ffd900";
             this.world.bossTriggered = true;
+            if (this.bossAggro == false) {
+                this.world.bossAttack();
+                this.bossAggro = true;
+            }
         } else {
             document.getElementById("canvas").style.backgroundColor = "#4793AF";
             this.world.bossTriggered = false;
